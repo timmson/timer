@@ -50,6 +50,14 @@ div.currentTime {
     text-align: right;
 }
 
+div.currentDate {
+    font-size: 30pt;
+    color: #222222;
+    width: 100%;
+    text-align: right;
+}
+
+
 div.variants {
     font-size: 50pt;
     color: #003300;

@@ -27,7 +27,8 @@ let app = new Vue({
             };
         },
         tickDown: function () {
-            this.currentTime = moment().locale("ru").format("DD.MM.YYYY, dddd, hh:mm:ss");
+            this.currentDate = moment().locale("ru").format("DD.MM.YYYY, dddd");
+            this.currentTime = moment().format("hh:mm:ss");
 
             if (this.isStarted) {
                 if (this.remainingTimeSource.seconds > 0) {
