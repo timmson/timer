@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+body, html {
+    margin: 0;
+    padding: 10px;
+    border: 0;
+    font-family: Trebuchet MS;
+    color: #006600;
+    min-width: 950px;
+    background-color: #000;
+}
+
+img {
+    border: 0;
+}
+
+table.plain {
+    border-collapse: collapse;
+    padding: 0;
+    width: 100%;
+}
+
+table.plain td {
+    padding: 2px;
+    text-align: left;
+}
+
+a {
+    font-size: 30pt;
+    color: #006600;
+}
+
+div.normal {
+    font-size: 300pt;
+    width: 100%;
+    text-align: center;
+}
+
+div.alert {
+    font-size: 300pt;
+    color: #ff0000;
+    width: 100%;
+    text-align: center;
+}
+
+div.currentTime {
+    font-size: 50pt;
+    color: #003300;
+    width: 100%;
+    text-align: right;
+}
+
+div.variants {
+    font-size: 50pt;
+    color: #003300;
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+}
