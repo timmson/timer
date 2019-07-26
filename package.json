@@ -1,0 +1,30 @@
+{
+  "name": "mbt-bot",
+  "version": "1.0.0",
+  "description": "Timer",
+  "main": "app.js",
+  "private": true,
+  "dependencies": {
+    "jquery": "3.4.1"
+  },
+  "devDependencies": {
+    "electron": "4.0.5",
+    "electron-packager": "13.0.1"
+  },
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager . --ignore .idea --overwrite --out bin",
+    "test": "mocha",
+    "coverage": "nyc mocha && nyc report --reporter=text-lcov > coverage.lcov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timmson/timer"
+  },
+  "keywords": [
+    "timmson",
+    "timer"
+  ],
+  "author": "timmson",
+  "license": "MIT"
+}
