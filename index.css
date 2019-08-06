@@ -5,7 +5,7 @@ body, html {
     padding: 10px;
     border: 0;
     font-family: Trebuchet MS;
-    color: #006600;
+    color: #0c0;
     min-width: 950px;
     background-color: #000;
 }
@@ -27,7 +27,7 @@ table.plain td {
 
 a {
     font-size: 30pt;
-    color: #006600;
+    color: #0c0;
 }
 
 div.normal {
@@ -38,21 +38,28 @@ div.normal {
 
 div.alert {
     font-size: 300pt;
-    color: #ff0000;
+    color: #f00;
     width: 100%;
     text-align: center;
+    animation: blinker 1s linear infinite
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
 }
 
 div.currentTime {
     font-size: 50pt;
-    color: #003300;
+    color: #060;
     width: 100%;
     text-align: right;
 }
 
 div.currentDate {
     font-size: 30pt;
-    color: #222222;
+    color: #666;
     width: 100%;
     text-align: right;
 }
@@ -60,7 +67,7 @@ div.currentDate {
 
 div.variants {
     font-size: 50pt;
-    color: #003300;
+    color: #060;
     width: 80%;
     text-align: center;
     margin: 0 auto;

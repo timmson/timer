@@ -14,7 +14,7 @@ let app = new Vue({
             minutes: 5,
             seconds: 0
         },
-        variants: ["02:00", "03:00", "04:00", "05:00", "07:00", "10:00", "15:00"],
+        variants: ["00:01", "02:00", "03:00", "04:00", "05:00", "07:00", "10:00", "15:00"],
         currentDate: "",
         currentTime: ""
     },
@@ -25,10 +25,11 @@ let app = new Vue({
                 minutes: parseInt(variant.split(":")[0]),
                 seconds: parseInt(variant.split(":")[1])
             };
+            this.remainingTimeClass = "normal";
         },
         tickDown: function () {
             this.currentDate = moment().locale("ru").format("DD.MM.YYYY, dddd");
-            this.currentTime = moment().format("hh:mm:ss");
+            this.currentTime = moment().format("HH:mm:ss");
 
             if (this.isStarted) {
                 if (this.remainingTimeSource.seconds > 0) {
@@ -55,6 +56,9 @@ let app = new Vue({
             if (event.keyCode === 32) {
                 this.isStarted = !this.isStarted;
             }
+        });
+        window.addEventListener("click", (event) => {
+            this.isStarted = !this.isStarted;
         });
     },
     mounted() {
