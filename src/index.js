@@ -1,9 +1,11 @@
+import "./index.scss";
+
 import Vue from "vue";
 import fullscreen from "vue-fullscreen";
 import moment from "moment";
 
 Vue.use(fullscreen);
-let app = new Vue({
+new Vue({
     el: "#app",
     data: {
         isStarted: false,
@@ -14,7 +16,7 @@ let app = new Vue({
             minutes: 5,
             seconds: 0
         },
-        variants: ["00:01", "02:00", "03:00", "04:00", "05:00", "07:00", "10:00", "15:00"],
+        variants: ["01:00", "02:00", "03:00", "04:00", "05:00", "07:00", "10:00", "15:00"],
         currentDate: "",
         currentTime: ""
     },
@@ -26,6 +28,16 @@ let app = new Vue({
                 seconds: parseInt(variant.split(":")[1])
             };
             this.remainingTimeClass = "normal";
+        },
+        startStop: function (event) {
+            let rt = this.remainingTimeSource;
+            if (rt.minutes === 0 && rt.seconds === 0) {
+                this.remainingTimeClass = "normal";
+                this.audio.stop();
+            } else {
+                this.isStarted = !this.isStarted;
+            }
+
         },
         tickDown: function () {
             this.currentDate = moment().locale("ru").format("DD.MM.YYYY, dddd");
@@ -54,12 +66,10 @@ let app = new Vue({
     created() {
         window.addEventListener("keyup", (event) => {
             if (event.keyCode === 32) {
-                this.isStarted = !this.isStarted;
+                this.startStop(event);
             }
         });
-        window.addEventListener("click", (event) => {
-            this.isStarted = !this.isStarted;
-        });
+        window.addEventListener("click", this.startStop);
     },
     mounted() {
         this.tickDown();
