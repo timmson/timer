@@ -4,7 +4,7 @@ import Vue from "vue";
 import fullscreen from "vue-fullscreen";
 import moment from "moment";
 
-Vue.use(fullscreen);
+//Vue.use(fullscreen);
 new Vue({
     el: "#app",
     data: {
