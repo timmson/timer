@@ -1,2 +1,63 @@
-body,html{margin:0;padding:10px;border:0;font-family:Trebuchet MS, sans-serif;color:#0c0;min-width:950px;background-color:#000}img{border:0}table.plain{border-collapse:collapse;padding:0;width:100%}table.plain td{padding:2px;text-align:left}a{font-size:30pt;color:#0c0}div.normal{font-size:300pt;width:100%;text-align:center}div.alert{font-size:300pt;color:#f00;width:100%;text-align:center;animation:blinker 1s linear infinite}@keyframes blinker{50%{opacity:0}}div.currentTime{font-size:50pt;color:#060;width:100%;text-align:right}div.currentDate{font-size:30pt;color:#666;width:100%;text-align:right}div.variants{font-size:50pt;color:#060;width:80%;text-align:center;margin:0 auto}
+/*!*********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*********************************************************************************************************/
+body, html {
+  margin: 0;
+  padding: 10px;
+  border: 0;
+  font-family: Trebuchet MS, sans-serif;
+  color: #0c0;
+  min-width: 950px;
+  background-color: #000; }
+
+img {
+  border: 0; }
+
+table.plain {
+  border-collapse: collapse;
+  padding: 0;
+  width: 100%; }
+
+table.plain td {
+  padding: 2px;
+  text-align: left; }
+
+a {
+  font-size: 30pt;
+  color: #0c0; }
+
+div.normal {
+  font-size: 300pt;
+  width: 100%;
+  text-align: center; }
+
+div.alert {
+  font-size: 300pt;
+  color: #f00;
+  width: 100%;
+  text-align: center;
+  animation: blinker 1s linear infinite; }
+
+@keyframes blinker {
+  50% {
+    opacity: 0; } }
+
+div.currentTime {
+  font-size: 50pt;
+  color: #060;
+  width: 100%;
+  text-align: right; }
+
+div.currentDate {
+  font-size: 30pt;
+  color: #666;
+  width: 100%;
+  text-align: right; }
+
+div.variants {
+  font-size: 50pt;
+  color: #060;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto; }
 

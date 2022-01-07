@@ -2,28 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="no-cache" http-equiv="Pragma"/>
+    <meta content="no-cache"/>
     <link href="index.css" rel="stylesheet" type="text/css"/>
     <title>Timer</title>
 </head>
 <body>
-<div id="app">
-    <div class="variants">
-        <div v-for="variant in variants" style="display: inline; margin: 0 auto; width: 100%">
-            <a href="#" @click="setTime(variant)">{{variant}}</a>&nbsp;
-        </div>
-    </div>
-    <div :class="remainingTimeClass">
-        {{ remainingTime }}
-    </div>
-    <br/>
-    <div class="currentTime">
-        {{ currentTime }}
-    </div>
-    <div class="currentDate">
-        {{ currentDate }}
-    </div>
-</div>
+<div id="app"></div>
 <script src="index.js" charset="utf-8"></script>
 </body>
 </html>
