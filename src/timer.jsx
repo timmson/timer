@@ -15,7 +15,7 @@ class Timer extends React.Component {
         this.state = {
             isStarted: false,
             remainingTimeClass: "normal",
-            remainingTimeSource: [5, 0],
+            remainingTimeSource: [0, 5],
             currentTime: this.time.getCurrentTime()
         }
     }
