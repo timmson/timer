@@ -16,7 +16,6 @@ class Timer extends React.Component {
             isStarted: false,
             remainingTimeClass: "normal",
             remainingTimeSource: [5, 0],
-            currentDate: this.time.getCurrentDate(),
             currentTime: this.time.getCurrentTime()
         }
     }
@@ -38,7 +37,6 @@ class Timer extends React.Component {
 
     tick() {
         let state = this.state;
-        state.currentDate = this.time.getCurrentDate();
         state.currentTime = this.time.getCurrentTime();
 
         if (state.isStarted) {
@@ -106,9 +104,10 @@ class Timer extends React.Component {
                         {this.state.currentTime}
                     </div>
                 </div>
+
                 <div className={"row"}>
-                    <div className={"col currentDate"}>
-                        {this.state.currentDate}
+                    <div className={"col"} style={{textAlign : "right", color: "#666"}}>
+                        Версия 2022 года. Ищете <a href={"./old"}>старую версию</a>?
                     </div>
                 </div>
             </div>

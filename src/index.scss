@@ -12,7 +12,6 @@ body, html {
 }
 
 a {
-  font-size: 30pt;
   color: #0c0;
   text-decoration: none;
 }
@@ -23,14 +22,14 @@ a:hover {
 }
 
 div.normal {
-  font-size: 300pt;
+  font-size: 220pt;
   width: 100%;
   text-align: center;
   cursor: grab;
 }
 
 div.alert {
-  font-size: 300pt;
+  font-size: 220pt;
   color: #f00;
   width: 100%;
   text-align: center;
@@ -44,38 +43,16 @@ div.alert {
 }
 
 div.currentTime {
-  font-size: 50pt;
-  color: #060;
-  width: 100%;
-  text-align: right;
-}
-
-div.currentDate {
-  font-size: 30pt;
+  font-size: 25pt;
   color: #666;
   width: 100%;
   text-align: right;
 }
 
 div.variants {
-  font-size: 50pt;
+  font-size: 40pt;
   color: #060;
   width: 80%;
   text-align: center;
   margin: 0 auto;
-}
-
-@media (min-height: 400px) {
-  div.variants {
-    font-size: 40pt;
-  }
-
-  div.normal, div.alert {
-    font-size: 220pt;
-  }
-
-  div.currentTime {
-    font-size: 40pt;
-  }
-
 }

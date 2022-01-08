@@ -7,14 +7,7 @@ class Moment {
 	}
 
 	format(format) {
-		switch (format) {
-		case "DD.MM.YYYY, dddd":
-			return "yyy";
-		case "HH:mm:ss":
-			return "xxx";
-		default:
-			return null;
-		}
+		return (format === "HH:mm:ss, dddd, DD.MM.YYYY г.") ? "xxx" : null;
 	}
 }
 
@@ -25,10 +18,6 @@ function moment() {
 describe("Time should", () => {
 
 	const time = new Time(moment);
-
-	test("return formatted date", () => {
-		expect(time.getCurrentDate()).toEqual("yyy");
-	});
 
 	test("return formatted time", () => {
 		expect(time.getCurrentTime()).toEqual("xxx");

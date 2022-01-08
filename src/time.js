@@ -4,12 +4,8 @@ class Time {
 		this.moment = moment;
 	}
 
-	getCurrentDate() {
-		return this.moment().locale("ru").format("DD.MM.YYYY, dddd");
-	}
-
 	getCurrentTime() {
-		return this.moment().format("HH:mm:ss");
+		return this.moment().locale("ru").format("HH:mm:ss, dddd, DD.MM.YYYY г.");
 	}
 }
 
