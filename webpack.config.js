@@ -3,13 +3,21 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: "./src/index.jsx",
     output: {
         path: path.resolve(__dirname, './'),
         filename: "index.js"
     },
     module: {
         rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /(node_modules)/,
+                loader: "babel-loader",
+                options:{
+                    presets:["@babel/preset-env", "@babel/preset-react"]
+                }
+            },
             {
                 test: /\.(sa|sc|c)ss$/i,
                 use: [
@@ -19,11 +27,6 @@ module.exports = {
                 ]
             }
         ]
-    },
-    resolve: {
-        alias: {
-            "vue$": "vue/dist/vue.esm.js"
-        }
     },
     plugins: [
         new MiniCssExtractPlugin({
