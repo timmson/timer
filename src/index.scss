@@ -1,74 +1,81 @@
 @charset "utf-8";
+@import "~bootstrap/scss/bootstrap.scss";
 
 body, html {
-    margin: 0;
-    padding: 10px;
-    border: 0;
-    font-family: Trebuchet MS, sans-serif;
-    color: #0c0;
-    min-width: 950px;
-    background-color: #000;
-}
-
-img {
-    border: 0;
-}
-
-table.plain {
-    border-collapse: collapse;
-    padding: 0;
-    width: 100%;
-}
-
-table.plain td {
-    padding: 2px;
-    text-align: left;
+  margin: 0;
+  padding: 10px;
+  border: 0;
+  font-family: Trebuchet MS, sans-serif;
+  color: #0c0;
+  min-width: 950px;
+  background-color: #000;
 }
 
 a {
-    font-size: 30pt;
-    color: #0c0;
+  font-size: 30pt;
+  color: #0c0;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0c0;
+  text-decoration: underline;
 }
 
 div.normal {
-    font-size: 300pt;
-    width: 100%;
-    text-align: center;
+  font-size: 300pt;
+  width: 100%;
+  text-align: center;
+  cursor: grab;
 }
 
 div.alert {
-    font-size: 300pt;
-    color: #f00;
-    width: 100%;
-    text-align: center;
-    animation: blinker 1s linear infinite
+  font-size: 300pt;
+  color: #f00;
+  width: 100%;
+  text-align: center;
+  animation: blinker 1s linear infinite;
 }
 
 @keyframes blinker {
-    50% {
-        opacity: 0;
-    }
+  50% {
+    opacity: 0;
+  }
 }
 
 div.currentTime {
-    font-size: 50pt;
-    color: #060;
-    width: 100%;
-    text-align: right;
+  font-size: 50pt;
+  color: #060;
+  width: 100%;
+  text-align: right;
 }
 
 div.currentDate {
-    font-size: 30pt;
-    color: #666;
-    width: 100%;
-    text-align: right;
+  font-size: 30pt;
+  color: #666;
+  width: 100%;
+  text-align: right;
 }
 
-
 div.variants {
-    font-size: 50pt;
-    color: #060;
-    width: 80%;
-    text-align: center;
-    margin: 0 auto;
+  font-size: 50pt;
+  color: #060;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+@media (min-height: 400px) {
+  div.variants {
+    font-size: 40pt;
+  }
+
+  div.normal, div.alert {
+    font-size: 220pt;
+  }
+
+  div.currentTime {
+    font-size: 40pt;
+  }
+
 }
