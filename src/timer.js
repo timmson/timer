@@ -1,4 +1,6 @@
 const React = require("react");
+const useState = require("react").useState;
+const useEffect = require("react").useEffect;
 const PropTypes = require("prop-types");
 
 const Variant = require("./variant");
@@ -7,95 +9,75 @@ const Display = require("./display");
 const Time = require("./time");
 const Version = require("./version");
 
-class Timer extends React.Component {
+const Timer = (props) => {
 
-	static propTypes = {
-		audio: PropTypes.object.isRequired,
-		window: PropTypes.object.isRequired,
-		moment: PropTypes.func.isRequired,
-		variants: PropTypes.array.isRequired
-	};
+	const [state, setState] = useState(Display.STOPPED);
+	const [remainingTimeSource, setRemainingTimeSource] = useState([0, 5]);
+	const [currentTime, setCurrentTime] = useState(props.moment().locale("ru"));
 
-	constructor(props, context) {
-		super(props, context);
-
-		this.setTime = this.setTime.bind(this);
-		this.toggleStart = this.toggleStart.bind(this);
-
-		this.state = {
-			displayStatus: Display.STOPPED,
-			remainingTimeSource: [0, 5]
-		};
-	}
-
-	componentDidMount() {
-		this.props.window.addEventListener("keyup", (event) => {
+	useEffect(() => {
+		props.window.addEventListener("keyup", (event) => {
 			if (event.key === " ") {
-				this.toggleStart();
+				toggleStart();
 				event.preventDefault();
 			}
 		});
 
-		this.timerID = setInterval(() => this.tick(), 1000);
-	}
+		const timerID = setInterval(() => tick(), 1000);
 
-	componentWillUnmount() {
-		clearInterval(this.timerID);
-	}
+		return () => clearTimeout(timerID);
+	});
 
-	tick() {
-		let state = this.state;
+	function tick() {
+		setCurrentTime(props.moment().locale("ru"));
 
-		if (state.displayStatus === Display.STARTED) {
-			if (state.remainingTimeSource[0] > 0) {
-				state.remainingTimeSource[0] = state.remainingTimeSource[0] - 1;
+		if (state === Display.STARTED) {
+			if (remainingTimeSource[0] > 0) {
+				remainingTimeSource[0] = remainingTimeSource[0] - 1;
+				setRemainingTimeSource(remainingTimeSource);
 			} else {
-				if (state.remainingTimeSource[1] > 0) {
-					state.remainingTimeSource[1] = state.remainingTimeSource[1] - 1;
-					state.remainingTimeSource[0] = 59;
+				if (remainingTimeSource[1] > 0) {
+					remainingTimeSource[1] = remainingTimeSource[1] - 1;
+					remainingTimeSource[0] = 59;
+					setRemainingTimeSource(remainingTimeSource);
 				} else {
-					state.displayStatus = Display.ALERTED;
-					this.props.audio.play();
+					setState(Display.ALERTED);
+					props.audio.play();
 				}
 			}
 		}
 
-		this.setState(state);
 	}
 
-	toggleStart() {
-		let state = this.state;
-
-		if (state.remainingTimeSource.reduce((a, c) => a + c) === 0) {
-			state.displayStatus = Display.STOPPED;
+	function toggleStart() {
+		if (remainingTimeSource.reduce((a, c) => a + c) === 0) {
+			setState(Display.STOPPED);
 		} else {
-			state.displayStatus = state.displayStatus === Display.STOPPED ? Display.STARTED : Display.STOPPED;
+			setState(state === Display.STOPPED ? Display.STARTED : Display.STOPPED);
 		}
-
-		this.setState(state);
 	}
 
-	setTime(value) {
-		this.setState({
-			displayStatus: Display.STARTED,
-			remainingTimeSource: value.split(":").map((i) => parseInt(i, 10)).reverse()
-		});
+	function setTime(value) {
+		setState(Display.STARTED);
+		setRemainingTimeSource(value.split(":").map((i) => parseInt(i, 10)).reverse());
 	}
 
-	render() {
-		return (
-			<div className="container-fluid">
 
-				<VariantList variant={Variant} onClick={this.setTime} variants={this.props.variants}/>
+	return (
+		<div className="container-fluid">
+			<VariantList variant={Variant} onClick={setTime} variants={props.variants}/>
+			<Display onClick={toggleStart} status={state} value={remainingTimeSource}/>
+			<Time moment={currentTime}/>
+			<Version year={"2022"} oldUrl={"./old/"}/>
+		</div>
+	);
+};
 
-				<Display onClick={this.toggleStart} status={this.state.displayStatus} value={this.state.remainingTimeSource}/>
-
-				<Time moment={this.props.moment().locale("ru")}/>
-
-				<Version year={"2022"} oldUrl={"./old/"}/>
-			</div>
-		);
-	}
-}
+Timer.propTypes = {
+	audio: PropTypes.object.isRequired,
+	window: PropTypes.object.isRequired,
+	moment: PropTypes.func.isRequired,
+	variants: PropTypes.array.isRequired
+};
 
 module.exports = Timer;
