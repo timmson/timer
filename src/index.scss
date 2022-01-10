@@ -21,18 +21,27 @@ a:hover {
   text-decoration: underline;
 }
 
-div.normal {
-  font-size: 220pt;
+div.variants {
+  font-size: 30pt;
+  color: #060;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+div.timer {
+  font-size: 250pt;
   width: 100%;
   text-align: center;
   cursor: grab;
 }
 
+div.normal {
+  color: #0c0;
+}
+
 div.alert {
-  font-size: 220pt;
   color: #f00;
-  width: 100%;
-  text-align: center;
   animation: blinker 1s linear infinite;
 }
 
@@ -49,10 +58,16 @@ div.currentTime {
   text-align: right;
 }
 
-div.variants {
-  font-size: 40pt;
-  color: #060;
-  width: 80%;
-  text-align: center;
-  margin: 0 auto;
+@media (min-height: 768px) {
+  div.variants {
+    font-size: 50pt;
+  }
+
+  div.timer {
+    font-size: 400pt;
+  }
+
+  div.currentTime {
+    font-size: 40pt;
+  }
 }
