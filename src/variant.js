@@ -16,7 +16,7 @@ class Variant extends React.Component {
 	render() {
 		return (
 			<div key={this.props.id} className="variants col-sm">
-				<a href="#" onClick={this.props.onClick}>{this.props.value}</a>
+				<a href="#" onClick={() => this.props.onClick(this.props.value)}>{this.props.value}</a>
 			</div>
 		);
 	}

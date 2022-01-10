@@ -75,10 +75,10 @@ class Timer extends React.Component {
 		this.setState(state);
 	}
 
-	setTime(v) {
+	setTime(value) {
 		this.setState({
 			displayStatus: Display.STARTED,
-			remainingTimeSource: v.target.outerText.split(":").map((i) => parseInt(i, 10)).reverse()
+			remainingTimeSource: value.split(":").map((i) => parseInt(i, 10)).reverse()
 		});
 	}
 

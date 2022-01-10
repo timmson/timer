@@ -2,7 +2,7 @@
   "name": "timer",
   "version": "2.0.0",
   "description": "Timer",
-  "main": "app.js",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "bootstrap": "5.1.3",
