@@ -1,27 +1,20 @@
 const React = require("react");
 const PropTypes = require("prop-types");
 
-class VariantList extends React.Component {
+const VariantList = (props) => {
+	const Variant = props.variant;
 
-	static propTypes = {
-		variant: PropTypes.any.isRequired,
-		onClick: PropTypes.func.isRequired,
-		variants: PropTypes.array.isRequired,
-	};
+	return (
+		<div className="row">
+			{props.variants.map((v, i) => <Variant key={i} onClick={props.onClick} value={v}/>)}
+		</div>
+	);
+};
 
-	constructor(props, context) {
-		super(props, context);
-	}
-
-	render() {
-		const Variant = this.props.variant;
-
-		return (
-			<div className="row">
-				{this.props.variants.map((v, i) => <Variant key={i} onClick={this.props.onClick} value={v}/>)}
-			</div>
-		);
-	}
-}
+VariantList.propTypes = {
+	variant: PropTypes.any.isRequired,
+	onClick: PropTypes.func.isRequired,
+	variants: PropTypes.array.isRequired,
+};
 
 module.exports = VariantList;

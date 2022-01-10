@@ -1,24 +1,14 @@
 const React = require("react");
 const PropTypes = require("prop-types");
 
-class Variant extends React.Component {
+const Variant = (props) =>
+	<div className="variants col-sm">
+		<a href="#" onClick={() => props.onClick(props.value)}>{props.value}</a>
+	</div>;
 
-	static propTypes = {
-		value: PropTypes.string.isRequired,
-		onClick: PropTypes.func.isRequired
-	};
-
-	constructor(props, context) {
-		super(props, context);
-	}
-
-	render() {
-		return (
-			<div key={this.props.id} className="variants col-sm">
-				<a href="#" onClick={() => this.props.onClick(this.props.value)}>{this.props.value}</a>
-			</div>
-		);
-	}
-}
+Variant.propTypes = {
+	value: PropTypes.string.isRequired,
+	onClick: PropTypes.func.isRequired
+};
 
 module.exports = Variant;

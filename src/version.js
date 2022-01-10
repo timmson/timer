@@ -1,26 +1,16 @@
 const React = require("react");
 const PropTypes = require("prop-types");
 
-class Version extends React.Component {
+const Version = (props) =>
+	<div className="row">
+		<div className="col" style={{textAlign: "right", color: "#666"}}>
+			Версия {props.year} года. Ищете <a href={props.oldUrl}>старую версию</a>?
+		</div>
+	</div>;
 
-	static propTypes = {
-		year: PropTypes.string,
-		oldUrl: PropTypes.string
-	};
-
-	constructor(props, context) {
-		super(props, context);
-	}
-
-	render() {
-		return (
-			<div className="row">
-				<div className="col" style={{textAlign: "right", color: "#666"}}>
-					Версия {this.props.year} года. Ищете <a href={this.props.oldUrl}>старую версию</a>?
-				</div>
-			</div>
-		);
-	}
-}
+Version.propTypes = {
+	year: PropTypes.string,
+	oldUrl: PropTypes.string
+};
 
 module.exports = Version;

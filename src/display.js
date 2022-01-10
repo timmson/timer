@@ -2,51 +2,36 @@ const React = require("react");
 const PropTypes = require("prop-types");
 
 
-class Display extends React.Component {
+const Display = (props) => {
 
-	static STOPPED = "stopped";
-	static STARTED = "started";
-	static ALERTED = "alerted";
+	const getValueAt = (index) => props.value[index].toString().padStart(2, "0");
+	const getSeconds = () => getValueAt(0);
+	const getMinutes = () => getValueAt(1);
 
-	static propTypes = {
-		status: PropTypes.string.isRequired,
-		value: PropTypes.array.isRequired,
-		onClick: PropTypes.func.isRequired
-	};
+	const computedClassName = props.status !== Display.ALERTED ? "timer normal" : "timer alert";
+	const dotStyle = props.status === Display.STARTED ? {animation: "blinker 1s linear infinite"} : {};
 
-	constructor(props, context) {
-		super(props, context);
-	}
-
-	getValueAt(index) {
-		return this.props.value[index].toString().padStart(2, "0");
-	}
-
-	getSeconds() {
-		return this.getValueAt(0);
-	}
-
-	getMinutes() {
-		return this.getValueAt(1);
-	}
-
-
-	render() {
-		const computedClassName = this.props.status !== Display.ALERTED ? "timer normal" : "timer alert";
-		const dotStyle = this.props.status === Display.STARTED ? {animation: "blinker 1s linear infinite"} : {};
-
-		return (
-			<div className="row">
-				<div className="col">
-					<div className={computedClassName} onClick={this.props.onClick}>
-						{this.getMinutes()}
-						<span style={dotStyle}>{":"}</span>
-						{this.getSeconds()}
-					</div>
+	return (
+		<div className="row">
+			<div className="col">
+				<div className={computedClassName} onClick={props.onClick}>
+					{getMinutes()}
+					<span style={dotStyle}>{":"}</span>
+					{getSeconds()}
 				</div>
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
+
+Display.STOPPED = "stopped";
+Display.STARTED = "started";
+Display.ALERTED = "alerted";
+
+Display.propTypes = {
+	status: PropTypes.string.isRequired,
+	value: PropTypes.array.isRequired,
+	onClick: PropTypes.func.isRequired
+};
 
 module.exports = Display;
