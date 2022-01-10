@@ -1,4 +1,5 @@
 const React = require("react");
+const PropTypes = require("prop-types");
 
 class Timer extends React.Component {
 
@@ -110,5 +111,12 @@ class Timer extends React.Component {
 		);
 	}
 }
+
+Timer.propTypes = {
+	audio: PropTypes.object,
+	window: PropTypes.object,
+	time: PropTypes.object,
+	variants: PropTypes.array
+};
 
 module.exports = Timer;
