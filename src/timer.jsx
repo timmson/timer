@@ -1,7 +1,4 @@
 const React = require("react");
-const moment = require("moment");
-
-const Time = require("./time");
 
 class Timer extends React.Component {
 
@@ -10,18 +7,17 @@ class Timer extends React.Component {
 
         this.setTime = this.setTime.bind(this);
         this.toggleStart = this.toggleStart.bind(this);
-        this.time = new Time(moment);
 
         this.state = {
             isStarted: false,
             remainingTimeClass: "timer normal",
             remainingTimeSource: [0, 5],
-            currentTime: this.time.getCurrentTime()
+            currentTime: this.props.time.getCurrentTime()
         }
     }
 
     componentDidMount() {
-        window.addEventListener("keyup", (event) => {
+        this.props.window.addEventListener("keyup", (event) => {
             if (event.key === " ") {
                 this.toggleStart();
                 event.preventDefault();
@@ -37,7 +33,7 @@ class Timer extends React.Component {
 
     tick() {
         let state = this.state;
-        state.currentTime = this.time.getCurrentTime();
+        state.currentTime = this.props.time.getCurrentTime();
 
         if (state.isStarted) {
             if (state.remainingTimeSource[0] > 0) {
