@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Display should return alerted timer 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col"
+  >
+    <div
+      className="timer alert"
+    >
+      00
+      <span
+        style={Object {}}
+      >
+        :
+      </span>
+      00
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Display should return started timer 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col"
+  >
+    <div
+      className="timer normal"
+    >
+      01
+      <span
+        style={
+          Object {
+            "animation": "blinker 1s linear infinite",
+          }
+        }
+      >
+        :
+      </span>
+      00
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Display should return stopped timer 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col"
+  >
+    <div
+      className="timer normal"
+    >
+      01
+      <span
+        style={Object {}}
+      >
+        :
+      </span>
+      00
+    </div>
+  </div>
+</div>
+`;

@@ -1,10 +1,9 @@
+const React = require("react");
+const renderer = require("react-test-renderer");
+
 const Time = require("../src/time");
 
 class Moment {
-
-	locale(locale) {
-		return (locale === "ru") ? this : null;
-	}
 
 	format(format) {
 		return (format === "HH:mm:ss, dddd, DD.MM.YYYY г.") ? "xxx" : null;
@@ -17,10 +16,12 @@ function moment() {
 
 describe("Time should", () => {
 
-	const time = new Time(moment);
-
 	test("return formatted time", () => {
-		expect(time.getCurrentTime()).toEqual("xxx");
+		const component = renderer.create(
+			<Time moment={moment()}/>
+		);
+		expect(component.toJSON()).toMatchSnapshot();
+		component.unmount();
 	});
 
 });

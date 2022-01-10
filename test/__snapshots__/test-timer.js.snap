@@ -54,7 +54,7 @@ exports[`Timer should create app 1`] = `
     <div
       className="col currentTime"
     >
-      XXX
+      xxx
     </div>
   </div>
   <div
@@ -69,7 +69,9 @@ exports[`Timer should create app 1`] = `
         }
       }
     >
-      Версия 2022 года. Ищете 
+      Версия 
+      2022
+       года. Ищете 
       <a
         href="./old/"
       >

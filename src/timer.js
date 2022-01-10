@@ -1,7 +1,20 @@
 const React = require("react");
 const PropTypes = require("prop-types");
 
+const Variant = require("./variant");
+const VariantList = require("./variant-list");
+const Display = require("./display");
+const Time = require("./time");
+const Version = require("./version");
+
 class Timer extends React.Component {
+
+	static propTypes = {
+		audio: PropTypes.object,
+		window: PropTypes.object,
+		moment: PropTypes.func,
+		variants: PropTypes.array
+	};
 
 	constructor(props, context) {
 		super(props, context);
@@ -10,10 +23,8 @@ class Timer extends React.Component {
 		this.toggleStart = this.toggleStart.bind(this);
 
 		this.state = {
-			isStarted: false,
-			remainingTimeClass: "timer normal",
-			remainingTimeSource: [0, 5],
-			currentTime: this.props.time.getCurrentTime()
+			displayStatus: Display.STOPPED,
+			remainingTimeSource: [0, 5]
 		};
 	}
 
@@ -34,9 +45,8 @@ class Timer extends React.Component {
 
 	tick() {
 		let state = this.state;
-		state.currentTime = this.props.time.getCurrentTime();
 
-		if (state.isStarted) {
+		if (state.displayStatus === Display.STARTED) {
 			if (state.remainingTimeSource[0] > 0) {
 				state.remainingTimeSource[0] = state.remainingTimeSource[0] - 1;
 			} else {
@@ -44,8 +54,7 @@ class Timer extends React.Component {
 					state.remainingTimeSource[1] = state.remainingTimeSource[1] - 1;
 					state.remainingTimeSource[0] = 59;
 				} else {
-					state.remainingTimeClass = "timer alert";
-					state.isStarted = false;
+					state.displayStatus = Display.ALERTED;
 					this.props.audio.play();
 				}
 			}
@@ -58,9 +67,9 @@ class Timer extends React.Component {
 		let state = this.state;
 
 		if (state.remainingTimeSource.reduce((a, c) => a + c) === 0) {
-			state.remainingTimeClass = "timer normal";
+			state.displayStatus = Display.STOPPED;
 		} else {
-			state.isStarted = !state.isStarted;
+			state.displayStatus = state.displayStatus === Display.STOPPED ? Display.STARTED : Display.STOPPED;
 		}
 
 		this.setState(state);
@@ -68,55 +77,25 @@ class Timer extends React.Component {
 
 	setTime(v) {
 		this.setState({
-			isStarted: true,
-			remainingTimeClass: "timer normal",
+			displayStatus: Display.STARTED,
 			remainingTimeSource: v.target.outerText.split(":").map((i) => parseInt(i, 10)).reverse()
 		});
 	}
 
 	render() {
-		const variantComponents = this.props.variants.map((v) =>
-			<div key={v} className="variants col-sm">
-				<a href="#" onClick={this.setTime}>{v}</a>
-			</div>
-		);
 		return (
 			<div className="container-fluid">
-				<div className="row">
-					{variantComponents}
-				</div>
 
-				<div className="row">
-					<div className="col">
-						<div className={this.state.remainingTimeClass} onClick={this.toggleStart}>
-							{this.state.remainingTimeSource[1].toString().padStart(2, "0")}
-							<span style={this.state.isStarted ? {animation: "blinker 1s linear infinite"} : {}}>:</span>
-							{this.state.remainingTimeSource[0].toString().padStart(2, "0")}
-						</div>
-					</div>
-				</div>
+				<VariantList variant={Variant} onClick={this.setTime} variants={this.props.variants}/>
 
-				<div className="row">
-					<div className="col currentTime">
-						{this.state.currentTime}
-					</div>
-				</div>
+				<Display onClick={this.toggleStart} status={this.state.displayStatus} value={this.state.remainingTimeSource}/>
 
-				<div className="row">
-					<div className="col" style={{textAlign: "right", color: "#666"}}>
-						Версия 2022 года. Ищете <a href="./old/">старую версию</a>?
-					</div>
-				</div>
+				<Time moment={this.props.moment().locale("ru")}/>
+
+				<Version year={"2022"} oldUrl={"./old/"}/>
 			</div>
 		);
 	}
 }
-
-Timer.propTypes = {
-	audio: PropTypes.object,
-	window: PropTypes.object,
-	time: PropTypes.object,
-	variants: PropTypes.array
-};
 
 module.exports = Timer;

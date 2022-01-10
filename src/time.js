@@ -1,12 +1,25 @@
-class Time {
+const React = require("react");
+const PropTypes = require("prop-types");
 
-	constructor(moment) {
-		this.moment = moment;
+class Time extends React.Component {
+
+	constructor(props, context) {
+		super(props, context);
 	}
 
-	getCurrentTime() {
-		return this.moment().locale("ru").format("HH:mm:ss, dddd, DD.MM.YYYY г.");
+	render() {
+		return (
+			<div className="row">
+				<div className="col currentTime">
+					{this.props.moment.format("HH:mm:ss, dddd, DD.MM.YYYY г.")}
+				</div>
+			</div>
+		);
 	}
 }
+
+Time.propTypes = {
+	moment: PropTypes.object
+};
 
 module.exports = Time;
