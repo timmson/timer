@@ -10,10 +10,10 @@ const Version = require("./version");
 class Timer extends React.Component {
 
 	static propTypes = {
-		audio: PropTypes.object,
-		window: PropTypes.object,
-		moment: PropTypes.func,
-		variants: PropTypes.array
+		audio: PropTypes.object.isRequired,
+		window: PropTypes.object.isRequired,
+		moment: PropTypes.func.isRequired,
+		variants: PropTypes.array.isRequired
 	};
 
 	constructor(props, context) {

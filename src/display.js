@@ -9,9 +9,9 @@ class Display extends React.Component {
 	static ALERTED = "alerted";
 
 	static propTypes = {
-		status: PropTypes.string,
-		value: PropTypes.array,
-		onClick: PropTypes.func
+		status: PropTypes.string.isRequired,
+		value: PropTypes.array.isRequired,
+		onClick: PropTypes.func.isRequired
 	};
 
 	constructor(props, context) {

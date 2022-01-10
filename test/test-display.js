@@ -3,6 +3,7 @@ const PropTypes = require("prop-types");
 const renderer = require("react-test-renderer");
 
 const Display = require("../src/display");
+const {getKeyValue} = require("eslint-plugin-react/lib/util/ast");
 
 class MockDisplayValue extends React.Component {
 
@@ -48,9 +49,9 @@ describe("Display should", () => {
 	});
 
 	test("contain properties", () => {
-		expect(Display.propTypes.status).toEqual(PropTypes.string);
-		expect(Display.propTypes.value).toEqual(PropTypes.array);
-		expect(Display.propTypes.onClick).toEqual(PropTypes.func);
+		expect(Display.propTypes).toHaveProperty("status");
+		expect(Display.propTypes).toHaveProperty("value");
+		expect(Display.propTypes).toHaveProperty("onClick");
 	});
 
 });

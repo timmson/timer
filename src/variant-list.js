@@ -3,6 +3,12 @@ const PropTypes = require("prop-types");
 
 class VariantList extends React.Component {
 
+	static propTypes = {
+		variant: PropTypes.any.isRequired,
+		onClick: PropTypes.func.isRequired,
+		variants: PropTypes.array.isRequired,
+	};
+
 	constructor(props, context) {
 		super(props, context);
 	}
@@ -17,11 +23,5 @@ class VariantList extends React.Component {
 		);
 	}
 }
-
-VariantList.propTypes = {
-	variant: PropTypes.any,
-	onClick: PropTypes.func,
-	variants: PropTypes.arrayOf(PropTypes.string),
-};
 
 module.exports = VariantList;

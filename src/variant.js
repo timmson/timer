@@ -4,9 +4,8 @@ const PropTypes = require("prop-types");
 class Variant extends React.Component {
 
 	static propTypes = {
-		id: PropTypes.number,
-		value: PropTypes.string,
-		onClick: PropTypes.func
+		value: PropTypes.string.isRequired,
+		onClick: PropTypes.func.isRequired
 	};
 
 	constructor(props, context) {

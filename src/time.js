@@ -3,6 +3,10 @@ const PropTypes = require("prop-types");
 
 class Time extends React.Component {
 
+	static propTypes = {
+		moment: PropTypes.object.isRequired
+	};
+
 	constructor(props, context) {
 		super(props, context);
 	}
@@ -17,9 +21,5 @@ class Time extends React.Component {
 		);
 	}
 }
-
-Time.propTypes = {
-	moment: PropTypes.object
-};
 
 module.exports = Time;
