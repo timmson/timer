@@ -59,15 +59,17 @@ div.currentTime {
 }
 
 @media (min-height: 768px) {
-  div.variants {
-    font-size: 50pt;
-  }
+  @media (min-width: 1500px) {
+    div.variants {
+      font-size: 50pt;
+    }
 
-  div.timer {
-    font-size: 400pt;
-  }
+    div.timer {
+      font-size: 400pt;
+    }
 
-  div.currentTime {
-    font-size: 40pt;
+    div.currentTime {
+      font-size: 40pt;
+    }
   }
 }
