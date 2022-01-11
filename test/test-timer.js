@@ -30,7 +30,7 @@ function moment() {
 	return new Moment();
 }
 
-describe("Timer should", () => {
+xdescribe("Timer should", () => {
 
 	test("create app", () => {
 		const component = renderer.create(
