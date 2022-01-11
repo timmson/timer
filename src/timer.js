@@ -11,63 +11,85 @@ const Version = require("./version");
 
 const Timer = (props) => {
 
-	const [state, setState] = useState(Display.STOPPED);
-	const [remainingTimeSource, setRemainingTimeSource] = useState([0, 5]);
-	const [currentTime, setCurrentTime] = useState(props.moment().locale("ru"));
+	let [state, setState] = useState({
+		status: Display.STOPPED,
+		remainingTimeSource: [0, 5],
+		currentTime: 0
+	});
 
 	useEffect(() => {
-		props.window.addEventListener("keyup", (event) => {
+		const startStopHandler = (event) => {
 			if (event.key === " ") {
 				toggleStart();
 				event.preventDefault();
 			}
-		});
+		};
+		props.window.addEventListener("keyup", startStopHandler);
 
 		const timerID = setInterval(() => tick(), 1000);
 
-		return () => clearTimeout(timerID);
+		return () => {
+			props.window.removeEventListener("keyup", startStopHandler);
+			clearTimeout(timerID);
+		};
+
 	});
 
 	function tick() {
-		setCurrentTime(props.moment().locale("ru"));
+		state.currentTime++;
 
-		if (state === Display.STARTED) {
-			if (remainingTimeSource[0] > 0) {
-				remainingTimeSource[0] = remainingTimeSource[0] - 1;
-				setRemainingTimeSource(remainingTimeSource);
+		if (state.status === Display.STARTED) {
+			if (state.remainingTimeSource[0] > 0) {
+				state.remainingTimeSource[0] = state.remainingTimeSource[0] - 1;
 			} else {
-				if (remainingTimeSource[1] > 0) {
-					remainingTimeSource[1] = remainingTimeSource[1] - 1;
-					remainingTimeSource[0] = 59;
-					setRemainingTimeSource(remainingTimeSource);
+				if (state.remainingTimeSource[1] > 0) {
+					state.remainingTimeSource[1] = state.remainingTimeSource[1] - 1;
+					state.remainingTimeSource[0] = 59;
 				} else {
-					setState(Display.ALERTED);
+					state.status = Display.ALERTED;
 					props.audio.play();
 				}
 			}
 		}
 
+		setState({
+			status: state.status,
+			remainingTimeSource: state.remainingTimeSource,
+			currentTime: state.currentTime
+		});
 	}
 
 	function toggleStart() {
-		if (remainingTimeSource.reduce((a, c) => a + c) === 0) {
-			setState(Display.STOPPED);
+		if (state.remainingTimeSource.reduce((a, c) => a + c) === 0) {
+			state.status = Display.STOPPED;
 		} else {
-			setState(state === Display.STOPPED ? Display.STARTED : Display.STOPPED);
+			state.status = (state.status === Display.STOPPED ? Display.STARTED : Display.STOPPED);
 		}
+
+		setState({
+			status: state.status,
+			remainingTimeSource: state.remainingTimeSource,
+			currentTime: state.currentTime
+		});
 	}
 
 	function setTime(value) {
-		setState(Display.STARTED);
-		setRemainingTimeSource(value.split(":").map((i) => parseInt(i, 10)).reverse());
+		state.status = Display.STARTED;
+		state.remainingTimeSource = value.split(":").map((i) => parseInt(i, 10)).reverse();
+
+		setState({
+			status: state.status,
+			remainingTimeSource: state.remainingTimeSource,
+			currentTime: state.currentTime
+		});
 	}
 
 
 	return (
 		<div className="container-fluid">
-			<VariantList variant={Variant} onClick={setTime} variants={props.variants}/>
-			<Display onClick={toggleStart} status={state} value={remainingTimeSource}/>
-			<Time moment={currentTime}/>
+			<VariantList variant={Variant} variants={props.variants} onClick={setTime}/>
+			<Display status={state.status} value={state.remainingTimeSource} onClick={toggleStart}/>
+			<Time moment={props.moment().locale("ru")}/>
 			<Version year={"2022"} oldUrl={"./old/"}/>
 		</div>
 	);
