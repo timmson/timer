@@ -9,6 +9,7 @@ exports[`Time should return formatted time 1`] = `
   >
     <a
       href="url"
+      target="_blank"
     />
   </div>
 </div>

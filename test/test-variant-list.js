@@ -19,8 +19,7 @@ describe("VariantList should", () => {
 
 	test("return variants", () => {
 		const component = renderer.create(
-			<VariantList onClick={() => {
-			}} variant={Variant} variants={["01:00", "02:00"]}/>
+			<VariantList variant={Variant} variants={[1, 2]}/>
 		);
 		expect(component.toJSON()).toMatchSnapshot();
 		component.unmount();

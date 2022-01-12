@@ -30,11 +30,11 @@ function moment() {
 	return new Moment();
 }
 
-xdescribe("Timer should", () => {
+describe("Timer should", () => {
 
 	test("create app", () => {
 		const component = renderer.create(
-			<Timer audio={new MockAudio()} window={new MockWindow()} moment={moment} variants={["01:00", "02:00"]}/>
+			<Timer audio={new MockAudio()} window={new MockWindow()} moment={moment} variants={[1, 2]} calendarURL={"#"}/>
 		);
 		expect(component.toJSON()).toMatchSnapshot();
 		component.unmount();

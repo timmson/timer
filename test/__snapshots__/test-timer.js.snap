@@ -54,7 +54,10 @@ exports[`Timer should create app 1`] = `
     <div
       className="col currentTime"
     >
-      xxx
+      <a
+        href="#"
+        target="_blank"
+      />
     </div>
   </div>
   <div
