@@ -4,8 +4,8 @@ const PropTypes = require("prop-types");
 const Time = (props) =>
 	<div className="row">
 		<div className="col currentTime">
-			{props.moment.format("HH:mm:ss ")}
-			<a href={props.calendarURL}>{props.moment.format("dddd, DD.MM.YYYY г.")}</a>
+			{props.moment.format("HH:mm:ss, dddd, ")}
+			<a target={"_blank"} href={props.calendarURL}>{props.moment.format("DD.MM.YYYY г.")}</a>
 		</div>
 	</div>;
 
