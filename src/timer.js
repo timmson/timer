@@ -12,12 +12,12 @@ const Timer = (props) => {
 	const moment = props.moment;
 	const [window] = React.useState(props.window);
 	const [state, setState] = React.useState(() => {
-			return {
-				status: Display.STOPPED,
-				remainingSeconds: 300,
-				currentTime: moment().valueOf()
-			};
-		}
+		return {
+			status: Display.STOPPED,
+			remainingSeconds: 300,
+			currentTime: moment().valueOf()
+		};
+	}
 	);
 
 	React.useEffect(() => {
