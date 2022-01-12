@@ -13,8 +13,7 @@ const Timer = (props) => {
 
 	let [state, setState] = useState({
 		status: Display.STOPPED,
-		remainingTimeSource: [0, 5],
-		currentTime: 0
+		remainingTimeSource: [0, 5]
 	});
 
 	useEffect(() => {
@@ -36,51 +35,46 @@ const Timer = (props) => {
 	});
 
 	function tick() {
-		state.currentTime++;
+		setState((prevState) => {
 
-		if (state.status === Display.STARTED) {
-			if (state.remainingTimeSource[0] > 0) {
-				state.remainingTimeSource[0] = state.remainingTimeSource[0] - 1;
-			} else {
-				if (state.remainingTimeSource[1] > 0) {
-					state.remainingTimeSource[1] = state.remainingTimeSource[1] - 1;
-					state.remainingTimeSource[0] = 59;
+			if (prevState.status === Display.STARTED) {
+				if (prevState.remainingTimeSource[0] > 0) {
+					prevState.remainingTimeSource[0] = prevState.remainingTimeSource[0] - 1;
 				} else {
-					state.status = Display.ALERTED;
-					props.audio.play();
+					if (prevState.remainingTimeSource[1] > 0) {
+						prevState.remainingTimeSource[1] = prevState.remainingTimeSource[1] - 1;
+						prevState.remainingTimeSource[0] = 59;
+					} else {
+						prevState.status = Display.ALERTED;
+						props.audio.play();
+					}
 				}
 			}
-		}
 
-		setState({
-			status: state.status,
-			remainingTimeSource: state.remainingTimeSource,
-			currentTime: state.currentTime
+			return {
+				status: prevState.status,
+				remainingTimeSource: prevState.remainingTimeSource
+			};
 		});
 	}
 
 	function toggleStart() {
-		if (state.remainingTimeSource.reduce((a, c) => a + c) === 0) {
-			state.status = Display.STOPPED;
-		} else {
-			state.status = (state.status === Display.STOPPED ? Display.STARTED : Display.STOPPED);
-		}
-
-		setState({
-			status: state.status,
-			remainingTimeSource: state.remainingTimeSource,
-			currentTime: state.currentTime
+		setState((prevState) => {
+			if (prevState.remainingTimeSource.reduce((a, c) => a + c) === 0) {
+				prevState.status = Display.STOPPED;
+			} else {
+				prevState.status = (prevState.status === Display.STOPPED ? Display.STARTED : Display.STOPPED);
+			}
+			return prevState;
 		});
+
 	}
 
 	function setTime(value) {
-		state.status = Display.STARTED;
-		state.remainingTimeSource = value.split(":").map((i) => parseInt(i, 10)).reverse();
-
-		setState({
-			status: state.status,
-			remainingTimeSource: state.remainingTimeSource,
-			currentTime: state.currentTime
+		setState((prevState) => {
+			prevState.status = Display.STARTED;
+			prevState.remainingTimeSource = value.split(":").map((i) => parseInt(i, 10)).reverse();
+			return prevState;
 		});
 	}
 
