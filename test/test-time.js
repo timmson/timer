@@ -18,7 +18,7 @@ describe("Time should", () => {
 
 	test("return formatted time", () => {
 		const component = renderer.create(
-			<Time moment={moment()}/>
+			<Time moment={moment()} calendarURL={"url"}/>
 		);
 		expect(component.toJSON()).toMatchSnapshot();
 		component.unmount();

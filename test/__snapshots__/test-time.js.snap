@@ -7,7 +7,9 @@ exports[`Time should return formatted time 1`] = `
   <div
     className="col currentTime"
   >
-    xxx
+    <a
+      href="url"
+    />
   </div>
 </div>
 `;

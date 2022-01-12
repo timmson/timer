@@ -4,12 +4,12 @@ const PropTypes = require("prop-types");
 
 const Display = (props) => {
 
-	const getValueAt = (index) => props.value[index].toString().padStart(2, "0");
-	const getSeconds = () => getValueAt(0);
-	const getMinutes = () => getValueAt(1);
-
 	const computedClassName = props.status !== Display.ALERTED ? "timer normal" : "timer alert";
 	const dotStyle = props.status === Display.STARTED ? {animation: "blinker 1s linear infinite"} : {};
+
+	const padZeros = (number) => (number).toString().padStart(2, "0");
+	const getSeconds = () => padZeros(props.value % 60);
+	const getMinutes = () => padZeros((Math.floor(props.value / 60)));
 
 	return (
 		<div className="row">
@@ -30,7 +30,7 @@ Display.ALERTED = "alerted";
 
 Display.propTypes = {
 	status: PropTypes.string.isRequired,
-	value: PropTypes.array.isRequired,
+	value: PropTypes.number.isRequired,
 	onClick: PropTypes.func.isRequired
 };
 

@@ -8,7 +8,7 @@ describe("Display should", () => {
 	test("return stopped timer", () => {
 		const component = renderer.create(
 			<Display onClick={() => {
-			}} status={Display.STOPPED} value={[0, 1]}/>
+			}} status={Display.STOPPED} value={60}/>
 		);
 		expect(component.toJSON()).toMatchSnapshot();
 		component.unmount();
@@ -17,7 +17,7 @@ describe("Display should", () => {
 	test("return started timer", () => {
 		const component = renderer.create(
 			<Display onClick={() => {
-			}} status={Display.STARTED} value={[0, 1]}/>
+			}} status={Display.STARTED} value={60}/>
 		);
 		expect(component.toJSON()).toMatchSnapshot();
 		component.unmount();
@@ -26,7 +26,7 @@ describe("Display should", () => {
 	test("return alerted timer", () => {
 		const component = renderer.create(
 			<Display onClick={() => {
-			}} status={Display.ALERTED} value={[0, 0]}/>
+			}} status={Display.ALERTED} value={0}/>
 		);
 		expect(component.toJSON()).toMatchSnapshot();
 		component.unmount();

@@ -1,6 +1,4 @@
 const React = require("react");
-const useState = require("react").useState;
-const useEffect = require("react").useEffect;
 const PropTypes = require("prop-types");
 
 const Variant = require("./variant");
@@ -11,56 +9,56 @@ const Version = require("./version");
 
 const Timer = (props) => {
 
-	let [state, setState] = useState({
-		status: Display.STOPPED,
-		remainingTimeSource: [0, 5]
-	});
+	const moment = props.moment;
+	const [window] = React.useState(props.window);
+	const [state, setState] = React.useState(() => {
+			return {
+				status: Display.STOPPED,
+				remainingSeconds: 300,
+				currentTime: moment().valueOf()
+			};
+		}
+	);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		const startStopHandler = (event) => {
 			if (event.key === " ") {
 				toggleStart();
 				event.preventDefault();
 			}
 		};
-		props.window.addEventListener("keyup", startStopHandler);
+		window.addEventListener("keyup", startStopHandler);
+		return () => window.removeEventListener("keyup", startStopHandler);
+	}, [window]);
 
+	React.useEffect(() => {
 		const timerID = setInterval(() => tick(), 1000);
-
-		return () => {
-			props.window.removeEventListener("keyup", startStopHandler);
-			clearTimeout(timerID);
-		};
-
-	});
+		return () => clearTimeout(timerID);
+	}, [state]);
 
 	function tick() {
 		setState((prevState) => {
 
 			if (prevState.status === Display.STARTED) {
-				if (prevState.remainingTimeSource[0] > 0) {
-					prevState.remainingTimeSource[0] = prevState.remainingTimeSource[0] - 1;
+				if (prevState.remainingSeconds > 0) {
+					prevState.remainingSeconds--;
 				} else {
-					if (prevState.remainingTimeSource[1] > 0) {
-						prevState.remainingTimeSource[1] = prevState.remainingTimeSource[1] - 1;
-						prevState.remainingTimeSource[0] = 59;
-					} else {
-						prevState.status = Display.ALERTED;
-						props.audio.play();
-					}
+					prevState.status = Display.ALERTED;
+					props.audio.play();
 				}
 			}
 
 			return {
 				status: prevState.status,
-				remainingTimeSource: prevState.remainingTimeSource
+				remainingSeconds: prevState.remainingSeconds,
+				currentTime: moment().valueOf()
 			};
 		});
 	}
 
 	function toggleStart() {
 		setState((prevState) => {
-			if (prevState.remainingTimeSource.reduce((a, c) => a + c) === 0) {
+			if (prevState.remainingSeconds === 0) {
 				prevState.status = Display.STOPPED;
 			} else {
 				prevState.status = (prevState.status === Display.STOPPED ? Display.STARTED : Display.STOPPED);
@@ -73,7 +71,10 @@ const Timer = (props) => {
 	function setTime(value) {
 		setState((prevState) => {
 			prevState.status = Display.STARTED;
-			prevState.remainingTimeSource = value.split(":").map((i) => parseInt(i, 10)).reverse();
+
+			const [seconds, minutes] = value.split(":").map((i) => parseInt(i, 10)).reverse();
+			prevState.remainingSeconds = minutes * 60 + seconds;
+
 			return prevState;
 		});
 	}
@@ -82,8 +83,8 @@ const Timer = (props) => {
 	return (
 		<div className="container-fluid">
 			<VariantList variant={Variant} variants={props.variants} onClick={setTime}/>
-			<Display status={state.status} value={state.remainingTimeSource} onClick={toggleStart}/>
-			<Time moment={props.moment().locale("ru")}/>
+			<Display status={state.status} value={state.remainingSeconds} onClick={toggleStart}/>
+			<Time moment={moment(state.currentTime).locale("ru")} calendarURL={props.calendarURL}/>
 			<Version year={"2022"} oldUrl={"./old/"}/>
 		</div>
 	);
@@ -93,7 +94,8 @@ Timer.propTypes = {
 	audio: PropTypes.object.isRequired,
 	window: PropTypes.object.isRequired,
 	moment: PropTypes.func.isRequired,
-	variants: PropTypes.array.isRequired
+	variants: PropTypes.array.isRequired,
+	calendarURL: PropTypes.string.isRequired
 };
 
 module.exports = Timer;
