@@ -1,18 +1,13 @@
-const React = require("react");
-const renderer = require("react-test-renderer");
+import React from "react"
+import renderer from "react-test-renderer"
 
-const Timer = require("../src/timer");
+import Timer from "../src/timer"
 
-class MockAudio {
-
-}
-
-class MockWindow {
-
-	addEventListener() {
-
+function MockWindow() {
+	return {
+		addEventListener: () => {
+		}
 	}
-
 }
 
 class Moment {
@@ -34,10 +29,10 @@ describe("Timer should", () => {
 
 	test("create app", () => {
 		const component = renderer.create(
-			<Timer audio={new MockAudio()} window={new MockWindow()} moment={moment} variants={[1, 2]} calendarURL={"#"}/>
+			<Timer audio={{}} window={new MockWindow()} moment={moment} variants={[1, 2]} calendarURL={"#"}/>
 		);
-		expect(component.toJSON()).toMatchSnapshot();
-		component.unmount();
+		expect(component.toJSON()).toMatchSnapshot()
+		component.unmount()
 	});
 
 });

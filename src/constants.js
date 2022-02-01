@@ -1,0 +1,7 @@
+export const ACTION_TOGGLE = "ACTION_TOGGLE"
+export const ACTION_SET_TIME = "ACTION_SET_TIME"
+export const ACTION_TICK = "ACTION_TICK"
+
+export const DISPLAY_STOPPED = "STOPPED"
+export const DISPLAY_STARTED = "STARTED"
+export const DISPLAY_ALERTED = "ALERTED"

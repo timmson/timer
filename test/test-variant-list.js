@@ -1,27 +1,23 @@
-const React = require("react");
-const renderer = require("react-test-renderer");
+import React from "react"
+import PropTypes from "prop-types"
+import renderer from "react-test-renderer"
 
-const VariantList = require("../src/variant-list");
-const PropTypes = require("prop-types");
+import VariantList from "../src/variant-list"
 
-class Variant extends React.Component {
 
-	static propTypes = {
-		value: PropTypes.string
-	};
+function Variant(props) {
+	return <div>{props.value}</div>
+}
 
-	render() {
-		return (<div>{this.props.value}</div>);
-	}
+Variant.prototype.propTypes = {
+	value: PropTypes.string
 }
 
 describe("VariantList should", () => {
 
 	test("return variants", () => {
-		const component = renderer.create(
-			<VariantList variant={Variant} variants={[1, 2]}/>
-		);
-		expect(component.toJSON()).toMatchSnapshot();
-		component.unmount();
-	});
-});
+		const component = renderer.create(<VariantList variant={Variant} variants={[1, 2]}/>)
+		expect(component.toJSON()).toMatchSnapshot()
+		component.unmount()
+	})
+})

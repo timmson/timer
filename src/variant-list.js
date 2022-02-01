@@ -1,22 +1,20 @@
-const React = require("react");
-const PropTypes = require("prop-types");
+import React from "react"
+import PropTypes from "prop-types"
 
-const VariantList = (props) => {
-	const Variant = props.variant;
+export default function VariantList(props) {
 
-	const toZeroPads = (number) => `${number.toString().padStart(2, "0")}:00`;
+	const Variant = props.variant
+
+	const toZeroPads = (number) => `${number.toString().padStart(2, "0")}:00`
 
 	return (
 		<div className="row">
-			{props.variants.map((v, i) => <Variant key={i} onClick={props.onClick} value={toZeroPads(v)}/>)}
+			{props.variants.map((v, i) => <Variant key={i} value={toZeroPads(v)}/>)}
 		</div>
-	);
-};
+	)
+}
 
 VariantList.propTypes = {
 	variant: PropTypes.any.isRequired,
-	variants: PropTypes.array.isRequired,
-	onClick: PropTypes.func
-};
-
-module.exports = VariantList;
+	variants: PropTypes.array.isRequired
+}

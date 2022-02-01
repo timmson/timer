@@ -1,16 +1,17 @@
-const React = require("react");
-const PropTypes = require("prop-types");
+import React from "react"
+import PropTypes from "prop-types"
 
-const Version = (props) =>
-	<div className="row">
-		<div className="col" style={{textAlign: "right", color: "#666"}}>
-			Версия {props.year} года. Ищете <a href={props.oldUrl}>старую версию</a>?
+export default function Version(props) {
+	return (
+		<div className="row">
+			<div className="col" style={{textAlign: "right", color: "#666"}}>
+				Версия {props.year} года. Ищете <a href={props.oldUrl}>старую версию</a>?
+			</div>
 		</div>
-	</div>;
+	)
+}
 
 Version.propTypes = {
 	year: PropTypes.string,
 	oldUrl: PropTypes.string
-};
-
-module.exports = Version;
+}
