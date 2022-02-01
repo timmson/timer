@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
 
 export default function Version(props) {
 	return (
@@ -8,10 +8,10 @@ export default function Version(props) {
 				Версия {props.year} года. Ищете <a href={props.oldUrl}>старую версию</a>?
 			</div>
 		</div>
-	)
+	);
 }
 
 Version.propTypes = {
 	year: PropTypes.string,
 	oldUrl: PropTypes.string
-}
+};

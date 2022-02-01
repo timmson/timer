@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
 
 export default function Time(props) {
 	return (
@@ -9,10 +9,10 @@ export default function Time(props) {
 				<a target={"_blank"} href={props.calendarURL} rel={"noreferrer"}>{props.moment.format("DD.MM.YYYY г.")}</a>
 			</div>
 		</div>
-	)
+	);
 }
 
 Time.propTypes = {
 	moment: PropTypes.object.isRequired,
 	calendarURL: PropTypes.string.isRequired
-}
+};

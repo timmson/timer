@@ -1,13 +1,13 @@
-import React from "react"
-import renderer from "react-test-renderer"
+import React from "react";
+import renderer from "react-test-renderer";
 
-import Timer from "../src/timer"
+import Timer from "../src/timer";
 
 function MockWindow() {
 	return {
 		addEventListener: () => {
 		}
-	}
+	};
 }
 
 class Moment {
@@ -31,8 +31,8 @@ describe("Timer should", () => {
 		const component = renderer.create(
 			<Timer audio={{}} window={new MockWindow()} moment={moment} variants={[1, 2]} calendarURL={"#"}/>
 		);
-		expect(component.toJSON()).toMatchSnapshot()
-		component.unmount()
+		expect(component.toJSON()).toMatchSnapshot();
+		component.unmount();
 	});
 
 });
