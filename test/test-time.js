@@ -1,27 +1,25 @@
-const React = require("react");
-const renderer = require("react-test-renderer");
+import React from "react"
+import renderer from "react-test-renderer"
 
-const Time = require("../src/time");
-
-class Moment {
-
-	format(format) {
-		return (format === "HH:mm:ss, dddd, DD.MM.YYYY г.") ? "xxx" : null;
-	}
-}
+import Time from "../src/time"
 
 function moment() {
-	return new Moment();
+	return {
+		format: (format) => (format === "HH:mm:ss, dddd, DD.MM.YYYY г.") ? "xxx" : null
+	}
 }
 
 describe("Time should", () => {
 
 	test("return formatted time", () => {
-		const component = renderer.create(
-			<Time moment={moment()} calendarURL={"url"}/>
-		);
-		expect(component.toJSON()).toMatchSnapshot();
-		component.unmount();
-	});
+		const component = renderer.create(<Time moment={moment()} calendarURL={"url"}/>)
+		expect(component.toJSON()).toMatchSnapshot()
+		component.unmount()
+	})
 
-});
+	test("contain properties", () => {
+		expect(Time.propTypes).toHaveProperty("moment")
+		expect(Time.propTypes).toHaveProperty("calendarURL")
+	})
+
+})

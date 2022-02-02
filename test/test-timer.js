@@ -1,43 +1,42 @@
-const React = require("react");
-const renderer = require("react-test-renderer");
+import React from "react"
+import renderer, {act} from "react-test-renderer"
 
-const Timer = require("../src/timer");
+import Timer from "../src/timer"
 
-class MockAudio {
-
-}
-
-class MockWindow {
-
-	addEventListener() {
-
+function MockWindow() {
+	return {
+		addEventListener: () => {
+		}
 	}
-
 }
 
 class Moment {
 
 	locale(locale) {
-		return (locale === "ru") ? this : null;
+		return (locale === "ru") ? this : null
 	}
 
 	format(format) {
-		return (format === "HH:mm:ss, dddd, DD.MM.YYYY г.") ? "xxx" : null;
+		return (format === "HH:mm:ss, dddd, DD.MM.YYYY г.") ? "xxx" : null
 	}
 }
 
 function moment() {
-	return new Moment();
+	return new Moment()
 }
 
 describe("Timer should", () => {
 
 	test("create app", () => {
-		const component = renderer.create(
-			<Timer audio={new MockAudio()} window={new MockWindow()} moment={moment} variants={[1, 2]} calendarURL={"#"}/>
-		);
-		expect(component.toJSON()).toMatchSnapshot();
-		component.unmount();
-	});
+		let component
+		act(() => {
+			component = renderer.create(
+				<Timer audio={{}} window={new MockWindow()} moment={moment} variants={[1, 2]} calendarURL={"#"}/>
+			)
+		})
 
-});
+		expect(component.toJSON()).toMatchSnapshot()
+		component.unmount()
+	})
+
+})

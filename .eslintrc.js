@@ -3,7 +3,6 @@ module.exports = {
         "browser": true,
         "commonjs": true,
         "es6": true,
-        "node": true,
         "jest": true
     },
     "parser": "@babel/eslint-parser",
@@ -31,10 +30,6 @@ module.exports = {
         "quotes": [
             "error",
             "double"
-        ],
-        "semi": [
-            "error",
-            "always"
         ]
     },
     "settings": {
