@@ -22,7 +22,7 @@ a:hover {
 }
 
 div.variants {
-  font-size: 30pt;
+  font-size: 25pt;
   color: #060;
   width: 80%;
   text-align: center;
@@ -30,10 +30,17 @@ div.variants {
 }
 
 div.timer {
-  font-size: 250pt;
+  font-size: 160pt;
   width: 100%;
   text-align: center;
   cursor: grab;
+}
+
+div.currentTime {
+  font-size: 20pt;
+  color: #666;
+  width: 100%;
+  text-align: right;
 }
 
 div.normal {
@@ -51,11 +58,18 @@ div.alert {
   }
 }
 
-div.currentTime {
-  font-size: 25pt;
-  color: #666;
-  width: 100%;
-  text-align: right;
+@media (min-height: 540px) {
+  div.variants {
+    font-size: 30pt;
+  }
+
+  div.timer {
+    font-size: 250pt;
+  }
+
+  div.currentTime {
+    font-size: 25pt;
+  }
 }
 
 @media (min-height: 768px) {

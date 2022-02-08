@@ -30,7 +30,8 @@ self.addEventListener("fetch", async (event) => {
 		await cache.put(request, fetched.clone())
 		event.respondWith(fetched);
 	} catch (e) {
-		const cached = await caches.match(request);
-		event.respondWith(cached);
+		console.log(e);
+		/*const cached = await caches.match(request);
+		event.respondWith(cached);*/
 	}
 });
