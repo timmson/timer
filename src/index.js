@@ -13,13 +13,3 @@ ReactDOM.render(
 	<Timer audio={new Audio("beep.wav")} window={window} moment={moment} variants={variants} calendarURL={"../prod-cal"}/>,
 	document.getElementById("app")
 )
-
-window.addEventListener("load", async () => {
-	if ("serviceWorker" in navigator) {
-		try {
-			await navigator.serviceWorker.register("./sw.js");
-		} catch (e) {
-			console.log("Service worker register fail");
-		}
-	}
-});

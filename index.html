@@ -10,5 +10,16 @@
 <body>
 <div id="app"></div>
 <script charset="utf-8" src="index.js?v=1"></script>
+<script type="application/javascript">
+	window.addEventListener("load", async () => {
+		if ("serviceWorker" in navigator) {
+			try {
+				await navigator.serviceWorker.register("sw.js");
+			} catch (e) {
+				console.log("Service worker register fail");
+			}
+		}
+	});
+</script>
 </body>
 </html>
