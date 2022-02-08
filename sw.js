@@ -23,15 +23,16 @@ self.addEventListener("activate", async () => {
 
 
 self.addEventListener("fetch", async (event) => {
-	const {request} = event;
-	const cache = await caches.open(version)
-	try {
-		const fetched = await fetch(request);
-		await cache.put(request, fetched.clone())
-		event.respondWith(fetched);
-	} catch (e) {
-		console.log(e);
-		/*const cached = await caches.match(request);
-		event.respondWith(cached);*/
-	}
+	const response = networkFirst(event.request);
+	event.respondWith(response);
 });
+
+async function networkFirst(request) {
+	try {
+		return await fetch(request);
+	} catch (e) {
+		return caches.match(request);
+	}
+}
+
+
