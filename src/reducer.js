@@ -5,9 +5,8 @@ export default function (state, action) {
 
 	case ACTION_TOGGLE: {
 		return {
-			status: (state.remainingSeconds > 0 && state.status === DISPLAY_STOPPED) ? DISPLAY_STARTED : DISPLAY_STOPPED,
-			remainingSeconds: state.remainingSeconds,
-			currentTime: state.currentTime
+			...state,
+			status: (state.remainingSeconds > 0 && state.status === DISPLAY_STOPPED) ? DISPLAY_STARTED : DISPLAY_STOPPED
 		}
 	}
 
@@ -15,9 +14,9 @@ export default function (state, action) {
 		const [seconds, minutes] = action.value.split(":").map((i) => parseInt(i, 10)).reverse()
 		state.remainingSeconds = minutes * 60 + seconds
 		return {
+			...state,
 			status: DISPLAY_STARTED,
-			remainingSeconds: minutes * 60 + seconds,
-			currentTime: state.currentTime
+			remainingSeconds: minutes * 60 + seconds
 		}
 	}
 
@@ -31,8 +30,7 @@ export default function (state, action) {
 		}
 
 		return {
-			status: state.status,
-			remainingSeconds: state.remainingSeconds,
+			...state,
 			currentTime: action.currentTime
 		}
 	}

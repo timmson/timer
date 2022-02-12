@@ -1,41 +1,46 @@
 import Reducer from "../src/reducer"
+import {ACTION_SET_TIME, ACTION_TICK, ACTION_TOGGLE, DISPLAY_ALERTED, DISPLAY_STARTED, DISPLAY_STOPPED} from "../src/constants";
+
+const getTestCaseDescription = (t, i) => `# ${i} - return ${JSON.stringify(t.expected)} when state:${JSON.stringify(t.state)} and action:${JSON.stringify(t.action)}`
 
 describe("Reducer should", () => {
 
-	test("start timer when toggled", () => {
-		const state = Reducer({status: "STOPPED", remainingSeconds: 1}, {type: "ACTION_TOGGLE"})
-		expect(state.status).toEqual("STARTED")
-	})
-
-	test("stop timer when toggled", () => {
-		const state = Reducer({status: "STARTED", remainingSeconds: 1}, {type: "ACTION_TOGGLE"})
-		expect(state.status).toEqual("STOPPED")
-	})
-
-	test("start timer and set time when time is set", () => {
-		const state = Reducer({status: "STOPPED", remainingSeconds: 1}, {type: "ACTION_SET_TIME", value: "03:00"})
-		expect(state.status).toEqual("STARTED")
-		expect(state.remainingSeconds).toEqual(180)
-	})
-
-	test("tick down", () => {
-		const state = Reducer({status: "STARTED", remainingSeconds: 2}, {type: "ACTION_TICK"})
-		expect(state.status).toEqual("STARTED")
-		expect(state.remainingSeconds).toEqual(1)
-	})
-
-	test("tick down and alert", () => {
-		const state = Reducer({status: "STARTED", remainingSeconds: 0}, {type: "ACTION_TICK"})
-		expect(state.status).toEqual("ALERTED")
-		expect(state.remainingSeconds).toEqual(0)
-	})
-
-	test("default action", () => {
-		const prevState = {status: "STARTED"}
-
-		const state = Reducer({status: "STARTED"}, {type: "ANY"})
-
-		expect(state).toEqual(prevState)
+	[
+		{
+			state: {status: DISPLAY_STOPPED, remainingSeconds: 1},
+			action: {type: ACTION_TOGGLE},
+			expected: {status: DISPLAY_STARTED, remainingSeconds: 1}
+		},
+		{
+			state: {status: DISPLAY_STARTED, remainingSeconds: 1},
+			action: {type: ACTION_TOGGLE},
+			expected: {status: DISPLAY_STOPPED, remainingSeconds: 1}
+		},
+		{
+			state: {status: DISPLAY_STOPPED, remainingSeconds: 1},
+			action: {type: ACTION_SET_TIME, value: "03:00"},
+			expected: {status: DISPLAY_STARTED, remainingSeconds: 180}
+		},
+		{
+			state: {status: DISPLAY_STARTED, remainingSeconds: 2},
+			action: {type: ACTION_TICK},
+			expected: {status: DISPLAY_STARTED, remainingSeconds: 1}
+		},
+		{
+			state: {status: DISPLAY_STARTED, remainingSeconds: 0},
+			action: {type: ACTION_TICK},
+			expected: {status: DISPLAY_ALERTED, remainingSeconds: 0}
+		},
+		{
+			state: {status: DISPLAY_STARTED},
+			action: {type: "ANY"},
+			expected: {status: DISPLAY_STARTED}
+		}
+	].map((t, i) => {
+		test(getTestCaseDescription(t, i), () => {
+			const actual = Reducer(t.state, t.action)
+			expect(actual).toEqual(t.expected)
+		})
 	})
 
 })
