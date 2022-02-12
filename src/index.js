@@ -10,6 +10,6 @@ import Timer from "./timer"
 const variants = [1, 2, 3, 4, 5, 7, 10, 15, 20, 25, 30, 45]
 
 ReactDOM.render(
-	<Timer audio={new Audio("beep.wav")} window={window} moment={moment} variants={variants} calendarURL={"../prod-cal"}/>,
+	<Timer audio={new Audio("beep.wav")} window={window} moment={moment} variants={variants} calendarURL={"../prod-cal-ui"}/>,
 	document.getElementById("app")
 )
