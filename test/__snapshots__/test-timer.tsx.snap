@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Timer should create app 1`] = `
+<div
+  className="container-fluid"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="variants col-sm"
+    >
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        01:00
+      </a>
+    </div>
+    <div
+      className="variants col-sm"
+    >
+      <a
+        href="#"
+        onClick={[Function]}
+      >
+        02:00
+      </a>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col"
+    >
+      <div
+        className="timer normal"
+        onClick={[Function]}
+      >
+        05
+        <span
+          style={{}}
+        >
+          :
+        </span>
+        00
+      </div>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col currentTime"
+    >
+      <a
+        href="#"
+        rel="noreferrer"
+        target="_blank"
+      />
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col"
+      style={
+        {
+          "color": "#666",
+          "textAlign": "right",
+        }
+      }
+    >
+      Версия 
+      2022
+       года. Ищете 
+      <a
+        href="./old/"
+      >
+        старую версию
+      </a>
+      ?
+    </div>
+  </div>
+</div>
+`;
