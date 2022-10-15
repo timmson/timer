@@ -13,7 +13,7 @@ exports[`Display should return alerted timer 1`] = `
     >
       00
       <span
-        style={Object {}}
+        style={{}}
       >
         :
       </span>
@@ -37,7 +37,7 @@ exports[`Display should return started timer 1`] = `
       01
       <span
         style={
-          Object {
+          {
             "animation": "blinker 1s linear infinite",
           }
         }
@@ -63,7 +63,7 @@ exports[`Display should return stopped timer 1`] = `
     >
       01
       <span
-        style={Object {}}
+        style={{}}
       >
         :
       </span>

@@ -40,7 +40,7 @@ exports[`Timer should create app 1`] = `
       >
         05
         <span
-          style={Object {}}
+          style={{}}
         >
           :
         </span>
@@ -67,7 +67,7 @@ exports[`Timer should create app 1`] = `
     <div
       className="col"
       style={
-        Object {
+        {
           "color": "#666",
           "textAlign": "right",
         }

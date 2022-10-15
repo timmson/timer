@@ -1,10 +1,14 @@
 import React, {useContext} from "react"
-import PropTypes from "prop-types"
 
 import {ACTION_TOGGLE, DISPLAY_ALERTED, DISPLAY_STARTED} from "./constants"
 import Context from "./context"
 
-export default function Display(props) {
+type DisplayProps = {
+    status: string,
+    value: number
+}
+
+export default function Display(props: DisplayProps) {
 
 	const dispatch = useContext(Context)
 
@@ -28,7 +32,4 @@ export default function Display(props) {
 	)
 }
 
-Display.propTypes = {
-	status: PropTypes.string.isRequired,
-	value: PropTypes.number.isRequired
-}
+

@@ -1,7 +1,13 @@
 import React from "react"
-import PropTypes from "prop-types"
 
-export default function Time(props) {
+type TimeProps = {
+    moment: {
+        format: (f: string) => string
+    },
+    calendarURL: string
+}
+
+export default function Time(props: TimeProps) {
 	return (
 		<div className="row">
 			<div className="col currentTime">
@@ -12,7 +18,3 @@ export default function Time(props) {
 	)
 }
 
-Time.propTypes = {
-	moment: PropTypes.object.isRequired,
-	calendarURL: PropTypes.string.isRequired
-}

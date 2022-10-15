@@ -39,9 +39,4 @@ describe("Display should", () => {
 		component.unmount()
 	})
 
-	test("contain properties", () => {
-		expect(Display.propTypes).toHaveProperty("status")
-		expect(Display.propTypes).toHaveProperty("value")
-	})
-
 })

@@ -3,10 +3,13 @@ import renderer, {act} from "react-test-renderer"
 
 import Timer from "../src/timer"
 
-function MockWindow() {
-	return {
-		addEventListener: () => {
-		}
+class MockWindow {
+	removeEventListener() {
+		return 0
+	}
+
+	addEventListener() {
+		return 0
 	}
 }
 
@@ -21,17 +24,13 @@ class Moment {
 	}
 }
 
-function moment() {
-	return new Moment()
-}
-
 describe("Timer should", () => {
 
 	test("create app", () => {
 		let component
 		act(() => {
 			component = renderer.create(
-				<Timer audio={{}} window={new MockWindow()} moment={moment} variants={[1, 2]} calendarURL={"#"}/>
+				<Timer audio={{}} window={new MockWindow()} moment={() => new Moment()} variants={[1, 2]} calendarURL={"#"}/>
 			)
 		})
 

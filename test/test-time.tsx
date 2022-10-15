@@ -17,9 +17,4 @@ describe("Time should", () => {
 		component.unmount()
 	})
 
-	test("contain properties", () => {
-		expect(Time.propTypes).toHaveProperty("moment")
-		expect(Time.propTypes).toHaveProperty("calendarURL")
-	})
-
 })

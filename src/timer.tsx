@@ -1,5 +1,4 @@
 import React, {useEffect, useReducer} from "react"
-import PropTypes from "prop-types"
 
 import Context from "./context"
 import Reducer from "./reducer"
@@ -12,7 +11,15 @@ import Version from "./version"
 
 import {ACTION_TICK, ACTION_TOGGLE, DISPLAY_ALERTED, DISPLAY_STOPPED} from "./constants"
 
-export default function Timer(props) {
+type TimerProps = {
+    audio: any,
+    window: any,
+    moment: any,
+    variants: Array<number>,
+    calendarURL: string
+}
+
+export default function Timer(props: TimerProps) {
 
 	const moment = props.moment
 	const window = props.window
@@ -55,12 +62,4 @@ export default function Timer(props) {
 			</div>
 		</Context.Provider>
 	)
-}
-
-Timer.propTypes = {
-	audio: PropTypes.object.isRequired,
-	window: PropTypes.object.isRequired,
-	moment: PropTypes.func.isRequired,
-	variants: PropTypes.array.isRequired,
-	calendarURL: PropTypes.string.isRequired
 }
