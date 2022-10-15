@@ -7,7 +7,7 @@ exports[`Version should return version 1`] = `
   <div
     className="col"
     style={
-      Object {
+      {
         "color": "#666",
         "textAlign": "right",
       }

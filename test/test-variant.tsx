@@ -2,7 +2,7 @@ import React from "react"
 import renderer from "react-test-renderer"
 
 import Variant from "../src/variant"
-import Context from "../src/context";
+import Context from "../src/context"
 
 describe("Variant should", () => {
 
@@ -29,7 +29,4 @@ describe("Variant should", () => {
 		component.unmount()
 	})
 
-	test("contain properties", () => {
-		expect(Variant.propTypes).toHaveProperty("value")
-	})
 })

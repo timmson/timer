@@ -1,5 +1,5 @@
 import Reducer from "../src/reducer"
-import {ACTION_SET_TIME, ACTION_TICK, ACTION_TOGGLE, DISPLAY_ALERTED, DISPLAY_STARTED, DISPLAY_STOPPED} from "../src/constants";
+import {ACTION_SET_TIME, ACTION_TICK, ACTION_TOGGLE, DISPLAY_ALERTED, DISPLAY_STARTED, DISPLAY_STOPPED} from "../src/constants"
 
 const getTestCaseDescription = (t, i) =>
 	`#${i}: return ${JSON.stringify(t.expected)} when state:${JSON.stringify(t.state)} and action:${JSON.stringify(t.action)}`

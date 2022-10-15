@@ -11,8 +11,4 @@ describe("Version should", () => {
 		component.unmount()
 	})
 
-	test("contain properties", () => {
-		expect(Version.propTypes).toHaveProperty("year")
-		expect(Version.propTypes).toHaveProperty("oldUrl")
-	})
 })

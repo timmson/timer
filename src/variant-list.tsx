@@ -1,7 +1,11 @@
 import React from "react"
-import PropTypes from "prop-types"
 
-export default function VariantList(props) {
+type VariantListProps = {
+	variant: React.Component,
+	variants: Array<number>
+}
+
+export default function VariantList(props: VariantListProps) {
 
 	const Variant = props.variant
 
@@ -12,9 +16,4 @@ export default function VariantList(props) {
 			{props.variants.map((v, i) => <Variant key={i} value={toZeroPads(v)}/>)}
 		</div>
 	)
-}
-
-VariantList.propTypes = {
-	variant: PropTypes.any.isRequired,
-	variants: PropTypes.array.isRequired
 }
