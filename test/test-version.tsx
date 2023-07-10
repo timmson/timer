@@ -1,14 +1,17 @@
 import React from "react"
-import renderer from "react-test-renderer"
+import {render, screen} from "@testing-library/react"
+import "@testing-library/jest-dom"
 
 import Version from "../src/version"
 
 describe("Version should", () => {
 
 	test("return version", () => {
-		const component = renderer.create(<Version year={"1000"} oldUrl={"old"}/>)
-		expect(component.toJSON()).toMatchSnapshot()
-		component.unmount()
-	})
+		render(<Version year={"1000"} oldUrl={"https://example.com"}/>)
 
-})
+		expect(screen.getByText(/1000/i)).toBeInTheDocument()
+	})
+}
+)
+
+

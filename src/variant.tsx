@@ -4,7 +4,7 @@ import Context from "./context"
 import {ACTION_SET_TIME} from "./constants"
 
 type VariantProps = {
-	id: number
+	key: number
 	value: string
 }
 

@@ -3,7 +3,6 @@ import React, {useEffect, useReducer} from "react"
 import Context from "./context"
 import Reducer from "./reducer"
 
-import Variant from "./variant"
 import VariantList from "./variant-list"
 import Display from "./display"
 import Time from "./time"
@@ -12,9 +11,9 @@ import Version from "./version"
 import {ACTION_TICK, ACTION_TOGGLE, DISPLAY_ALERTED, DISPLAY_STOPPED} from "./constants"
 
 type TimerProps = {
-    audio: any,
-    window: any,
-    moment: any,
+    audio,
+    window,
+    moment,
     variants: Array<number>,
     calendarURL: string
 }
@@ -55,7 +54,7 @@ export default function Timer(props: TimerProps) {
 	return (
 		<Context.Provider value={dispatch}>
 			<div className="container-fluid">
-				<VariantList variant={Variant} variants={props.variants}/>
+				<VariantList variants={props.variants}/>
 				<Display status={state.status} value={state.remainingSeconds}/>
 				<Time moment={moment(state.currentTime).locale("ru")} calendarURL={props.calendarURL}/>
 				<Version year={"2022"} oldUrl={"./old/"}/>
