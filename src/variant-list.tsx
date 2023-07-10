@@ -1,13 +1,11 @@
 import React from "react"
+import Variant from "./variant"
 
 type VariantListProps = {
-	variant: React.Component,
 	variants: Array<number>
 }
 
 export default function VariantList(props: VariantListProps) {
-
-	const Variant = props.variant
 
 	const toZeroPads = (number) => `${number.toString().padStart(2, "0")}:00`
 
