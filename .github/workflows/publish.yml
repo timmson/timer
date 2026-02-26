@@ -24,7 +24,7 @@ jobs:
     - name: Compile App
       run: |
         npm i
-        npm run prod
+        npm run build
       env:
         CI: true
 
