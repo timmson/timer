@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 18.x ]
+        node-version: [ 24.x ]
 
     steps:
     - uses: actions/checkout@v3
@@ -29,6 +29,6 @@ jobs:
     - name: Compile App
       run: |
         npm i
-        npm run prod
+        npm run build
       env:
         CI: true

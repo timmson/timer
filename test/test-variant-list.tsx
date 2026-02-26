@@ -1,8 +1,7 @@
 import React from "react"
-import {render, screen} from "@testing-library/react"
-import user from "@testing-library/user-event"
 import "@testing-library/jest-dom"
-import "regenerator-runtime/runtime"
+import user from "@testing-library/user-event"
+import {render, screen} from "@testing-library/react"
 
 import VariantList from "../src/variant-list"
 import Context from "../src/context"
