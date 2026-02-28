@@ -1,23 +1,23 @@
 @charset "utf-8";
-@import "~bootstrap/scss/bootstrap.scss";
+@use "~bootstrap/scss/bootstrap.scss";
 
 body, html {
   margin: 0;
   padding: 10px;
   border: 0;
   font-family: Trebuchet MS, sans-serif;
-  color: #8982f4;
+  color: #00ff00;
   min-width: 950px;
-  background-color: #fff;
+  background-color: #000;
 }
 
 a {
-  color: #8982f4;
+  color: #00ff00;
   text-decoration: none;
 }
 
 a:hover {
-  color: #8982f4;
+  color: #00ff00;
   text-decoration: underline;
 }
 
@@ -44,7 +44,7 @@ div.currentTime {
 }
 
 div.normal {
-  color: #8982f4;
+  color: #00ff00;
 }
 
 div.alert {

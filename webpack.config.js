@@ -28,7 +28,15 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     "css-loader",
-                    "sass-loader"
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sassOptions: {
+                                quietDeps: true,
+                                silenceDeprecations: ["legacy-js-api"]
+                            }
+                        }
+                    }
                 ]
             }
         ]
@@ -37,7 +45,7 @@ module.exports = {
         extensions: [".tsx", ".ts", ".js"],
     },
     plugins: [
-        new MiniCssExtractPlugin({filename: "index.css"})
+        new MiniCssExtractPlugin({ filename: "index.css" })
     ],
     devServer: {
         static: {
