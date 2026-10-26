@@ -2,10 +2,8 @@
 coverage
 node_modules
 
-# Артефакты сборки webpack (генерируются в docs/, публикуются через gh-pages)
-docs/index.js
-docs/index.css
-docs/index.js.LICENSE.txt
+# Артефакты сборки webpack (публикуются на gh-pages из этой папки)
+dist
 
 # Qwen env file
 .qwen/.env

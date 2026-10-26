@@ -1,6 +1,8 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const outputDir = path.resolve(__dirname, "./docs");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const outputDir = path.resolve(__dirname, "./dist");
 
 module.exports = {
     entry: "./src/index.tsx",
@@ -47,7 +49,14 @@ module.exports = {
         extensions: [".tsx", ".ts", ".js"],
     },
     plugins: [
-        new MiniCssExtractPlugin({ filename: "index.css" })
+        new MiniCssExtractPlugin({ filename: "index.css" }),
+        new HtmlWebpackPlugin({ template: "./src/index.html" }),
+        // Статика (иконки, звук, service worker, манифест) ложится в корень сборки как есть
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: "src/static", to: outputDir }
+            ]
+        })
     ],
     devServer: {
         static: {
