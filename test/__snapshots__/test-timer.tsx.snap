@@ -49,7 +49,7 @@ exports[`Timer should create app 1`] = `
     </div>
   </div>
   <div
-    className="row"
+    className="row time"
   >
     <div
       className="col currentTime"

@@ -29,7 +29,7 @@ body {
 }
 
 body {
-  padding: 48px 24px;
+  padding: 24px 24px 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,6 +47,11 @@ div.container-fluid {
 // Вертикальные «воздушные» зазоры между смысловыми блоками таймера.
 div.container-fluid > div.row + div.row {
   margin-top: 72px;
+}
+
+// Часам достаточно половины зазора — иначе они «отрываются» от циферблата.
+div.container-fluid > div.row.time {
+  margin-top: 36px;
 }
 
 a {
