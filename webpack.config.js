@@ -7,7 +7,8 @@ module.exports = {
     output: {
         path: outputDir,
         filename: "index.js",
-        publicPath: "/"
+        // Базовый путь project Pages: https://timmson.github.io/timer/
+        publicPath: "/timer/"
     },
     module: {
         rules: [
