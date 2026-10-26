@@ -6,7 +6,7 @@ import Reducer from "./reducer"
 import VariantList from "./variant-list"
 import Display from "./display"
 import Time from "./time"
-import Version from "./version"
+import Decor from "./decor"
 
 import {ACTION_TICK, ACTION_TOGGLE, DISPLAY_ALERTED, DISPLAY_STOPPED} from "./constants"
 
@@ -57,7 +57,7 @@ export default function Timer(props: TimerProps) {
 				<VariantList variants={props.variants}/>
 				<Display status={state.status} value={state.remainingSeconds}/>
 				<Time moment={moment(state.currentTime).locale("ru")} calendarURL={props.calendarURL}/>
-				<Version year={"2022"} oldUrl={"./old/"}/>
+				<Decor/>
 			</div>
 		</Context.Provider>
 	)

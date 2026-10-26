@@ -1,60 +1,286 @@
 @charset "utf-8";
 @use "~bootstrap/scss/bootstrap.scss";
 
-body, html {
+$glass-border: rgba(255, 255, 255, 0.22);
+$glass-highlight: rgba(255, 255, 255, 0.45);
+$ink: rgba(255, 255, 255, 0.92);
+$muted: rgba(222, 232, 255, 0.55);
+$accent: #7fd8ff;
+$accent-bright: #b8eaff;
+$danger: #ff6b8b;
+
+html,
+body {
   margin: 0;
-  padding: 10px;
+  padding: 0;
   border: 0;
-  font-family: Trebuchet MS, sans-serif;
-  color: #00ff00;
+  min-height: 100vh;
   min-width: 950px;
-  background-color: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Trebuchet MS, sans-serif;
+  color: $ink;
+  background-color: #05070f;
+  background-image:
+    radial-gradient(120% 90% at 12% 8%, #1b2a63 0%, rgba(27, 42, 99, 0) 55%),
+    radial-gradient(100% 80% at 88% 12%, #3a1b5e 0%, rgba(58, 27, 94, 0) 50%),
+    radial-gradient(120% 100% at 50% 108%, #06304a 0%, rgba(6, 48, 74, 0) 60%),
+    linear-gradient(160deg, #070b1a 0%, #05070f 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+body {
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#app {
+  position: relative;
+}
+
+div.container-fluid {
+  position: relative;
+  z-index: 1;
+}
+
+// Вертикальные «воздушные» зазоры между смысловыми блоками таймера.
+div.container-fluid > div.row + div.row {
+  margin-top: 72px;
 }
 
 a {
-  color: #00ff00;
+  color: $accent;
   text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 a:hover {
-  color: #00ff00;
-  text-decoration: underline;
+  color: $accent-bright;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+div.decor {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+div.decor svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.decor .blob {
+  animation: drift 26s ease-in-out infinite alternate;
+}
+
+.decor .blob:nth-of-type(2) {
+  animation-duration: 34s;
+}
+
+.decor .blob:nth-of-type(3) {
+  animation-duration: 42s;
+}
+
+.decor .ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: spin 60s linear infinite;
+}
+
+.decor .sparkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: twinkle 5s ease-in-out infinite;
+}
+
+.decor .sparkle:nth-of-type(2n) {
+  animation-delay: 1.4s;
+}
+
+.decor .sparkle:nth-of-type(3n) {
+  animation-delay: 2.6s;
+}
+
+.decor .wave {
+  stroke-dasharray: 8 18;
+  animation: flow 18s linear infinite;
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(6%, -5%, 0) scale(1.12);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -260;
+  }
 }
 
 div.variants {
   font-size: 25pt;
-  color: #3f0071;
+  font-weight: 300;
   width: 80%;
   text-align: center;
   margin: 0 auto;
 }
 
+// Ряды вариантов переносятся bootstrap-ом — нужен вертикальный зазор между строками.
+div.variants.col-sm {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+div.variants a {
+  display: block;
+  padding: 10px 6px;
+  border-radius: 999px;
+  color: $ink;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+div.variants a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
 div.timer {
   font-size: 160pt;
-  width: 100%;
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.06em 0.16em 0.1em;
+  border-radius: 0.12em;
   text-align: center;
   cursor: grab;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.02) 45%, rgba(255, 255, 255, 0.08));
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  border: 1px solid $glass-border;
+  box-shadow:
+    inset 0 1px 0 $glass-highlight,
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    0 30px 70px rgba(0, 0, 0, 0.45);
+}
+
+div.timer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(104deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 40%);
+  pointer-events: none;
+}
+
+div.timer::after {
+  content: "";
+  position: absolute;
+  left: -40%;
+  top: -140%;
+  width: 40%;
+  height: 380%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+  transform: rotate(18deg);
+  animation: sheen 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sheen {
+  0%,
+  62% {
+    left: -45%;
+  }
+
+  100% {
+    left: 125%;
+  }
 }
 
 div.currentTime {
   font-size: 20pt;
-  color: #666;
-  width: 100%;
+  font-weight: 300;
+  color: $muted;
+  width: fit-content;
+  margin: 40px 0 0 auto;
+  padding: 8px 22px;
+  border-radius: 999px;
   text-align: right;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 div.normal {
-  color: #00ff00;
+  color: $ink;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.28),
+    0 -1px 1px rgba(0, 0, 0, 0.3),
+    0 18px 48px rgba(127, 216, 255, 0.28);
 }
 
 div.alert {
-  color: #f00;
+  color: $danger;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2),
+    0 18px 48px rgba(255, 107, 139, 0.45);
   animation: blinker 1s linear infinite;
+}
+
+div.caption {
+  font-size: 14pt;
+  font-weight: 300;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: $muted;
+  text-align: center;
 }
 
 @keyframes blinker {
   50% {
-    opacity: 0;
+    opacity: 0.15;
   }
 }
 
@@ -84,6 +310,10 @@ div.alert {
   div.currentTime {
     font-size: 32pt;
   }
+
+  div.caption {
+    font-size: 16pt;
+  }
 }
 
 @media (min-height: 1100px) {
@@ -98,6 +328,10 @@ div.alert {
 
     div.currentTime {
       font-size: 40pt;
+    }
+
+    div.caption {
+      font-size: 20pt;
     }
   }
 }
