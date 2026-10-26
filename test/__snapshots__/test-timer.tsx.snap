@@ -49,7 +49,7 @@ exports[`Timer should create app 1`] = `
     </div>
   </div>
   <div
-    className="row"
+    className="row time"
   >
     <div
       className="col currentTime"
@@ -62,27 +62,226 @@ exports[`Timer should create app 1`] = `
     </div>
   </div>
   <div
-    className="row"
+    aria-hidden="true"
+    className="decor"
   >
-    <div
-      className="col"
-      style={
-        {
-          "color": "#666",
-          "textAlign": "right",
-        }
-      }
+    <svg
+      preserveAspectRatio="xMidYMid slice"
+      viewBox="0 0 1000 700"
     >
-      Версия 
-      2022
-       года. Ищете 
-      <a
-        href="./old/"
+      <defs>
+        <radialGradient
+          cx="50%"
+          cy="50%"
+          id="blob-a"
+          r="50%"
+        >
+          <stop
+            offset="0%"
+            stopColor="#7fd8ff"
+            stopOpacity="0.55"
+          />
+          <stop
+            offset="100%"
+            stopColor="#7fd8ff"
+            stopOpacity="0"
+          />
+        </radialGradient>
+        <radialGradient
+          cx="50%"
+          cy="50%"
+          id="blob-b"
+          r="50%"
+        >
+          <stop
+            offset="0%"
+            stopColor="#c07fff"
+            stopOpacity="0.5"
+          />
+          <stop
+            offset="100%"
+            stopColor="#c07fff"
+            stopOpacity="0"
+          />
+        </radialGradient>
+        <radialGradient
+          cx="50%"
+          cy="50%"
+          id="blob-c"
+          r="50%"
+        >
+          <stop
+            offset="0%"
+            stopColor="#5affc0"
+            stopOpacity="0.35"
+          />
+          <stop
+            offset="100%"
+            stopColor="#5affc0"
+            stopOpacity="0"
+          />
+        </radialGradient>
+        <linearGradient
+          id="ring"
+          x1="0%"
+          x2="100%"
+          y1="0%"
+          y2="100%"
+        >
+          <stop
+            offset="0%"
+            stopColor="#ffffff"
+            stopOpacity="0.5"
+          />
+          <stop
+            offset="100%"
+            stopColor="#ffffff"
+            stopOpacity="0"
+          />
+        </linearGradient>
+        <filter
+          height="180%"
+          id="soften"
+          width="180%"
+          x="-40%"
+          y="-40%"
+        >
+          <feGaussianBlur
+            stdDeviation="30"
+          />
+        </filter>
+      </defs>
+      <g
+        filter="url(#soften)"
       >
-        старую версию
-      </a>
-      ?
-    </div>
+        <ellipse
+          className="blob"
+          cx="180"
+          cy="150"
+          fill="url(#blob-a)"
+          rx="230"
+          ry="190"
+        />
+        <ellipse
+          className="blob"
+          cx="850"
+          cy="210"
+          fill="url(#blob-b)"
+          rx="260"
+          ry="200"
+        />
+        <ellipse
+          className="blob"
+          cx="520"
+          cy="640"
+          fill="url(#blob-c)"
+          rx="320"
+          ry="180"
+        />
+      </g>
+      <g
+        fill="none"
+        stroke="url(#ring)"
+        strokeWidth="1.5"
+      >
+        <circle
+          className="ring"
+          cx="840"
+          cy="120"
+          r="90"
+        />
+        <circle
+          className="ring"
+          cx="110"
+          cy="560"
+          r="140"
+        />
+        <path
+          className="wave"
+          d="M-40 470 C 160 400 320 540 500 470 S 840 400 1040 470"
+        />
+        <path
+          className="wave"
+          d="M-40 250 C 200 190 340 320 560 250 S 880 190 1040 250"
+        />
+      </g>
+      <g
+        className="drops"
+        fill="#ffffff"
+      >
+        <circle
+          className="sparkle"
+          cx="12%"
+          cy="22%"
+          opacity="0.5"
+          r={5}
+        />
+        <circle
+          className="sparkle"
+          cx="82%"
+          cy="16%"
+          opacity="0.5"
+          r={3}
+        />
+        <circle
+          className="sparkle"
+          cx="68%"
+          cy="78%"
+          opacity="0.5"
+          r={4}
+        />
+        <circle
+          className="sparkle"
+          cx="26%"
+          cy="84%"
+          opacity="0.5"
+          r={3}
+        />
+        <circle
+          className="sparkle"
+          cx="46%"
+          cy="12%"
+          opacity="0.5"
+          r={2}
+        />
+        <circle
+          className="sparkle"
+          cx="92%"
+          cy="58%"
+          opacity="0.5"
+          r={4}
+        />
+        <circle
+          className="sparkle"
+          cx="6%"
+          cy="62%"
+          opacity="0.5"
+          r={3}
+        />
+      </g>
+      <g
+        className="drops"
+        fill="none"
+        stroke="#ffffff"
+        strokeOpacity="0.18"
+      >
+        <circle
+          cx="700"
+          cy="330"
+          r="26"
+        />
+        <circle
+          cx="330"
+          cy="120"
+          r="14"
+        />
+        <circle
+          cx="60"
+          cy="330"
+          r="20"
+        />
+      </g>
+    </svg>
   </div>
 </div>
 `;
