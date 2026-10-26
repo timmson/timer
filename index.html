@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta content="no-cache"/>
-    <link href="index.css" rel="stylesheet" type="text/css"/>
-    <link href="manifest.json" rel="manifest">
-    <title>Timer</title>
-</head>
-<body>
-<div id="app"></div>
-<script charset="utf-8" src="index.js?v=1"></script>
-<script type="application/javascript">
-	window.addEventListener("load", async () => {
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta content="no-cache"/><link href="manifest.json" rel="manifest"><title>Timer</title><script defer="defer" src="/timer/index.js"></script><link href="/timer/index.css" rel="stylesheet"></head><body><div id="app"></div><script>window.addEventListener("load", async () => {
 		if ("serviceWorker" in navigator) {
 			try {
 				await navigator.serviceWorker.register("sw.js");
@@ -19,7 +6,4 @@
 				console.log("Service worker register fail");
 			}
 		}
-	});
-</script>
-</body>
-</html>
+	});</script></body></html>
